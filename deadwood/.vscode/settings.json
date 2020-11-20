@@ -1,6 +1,7 @@
 {
-    "java.project.referencedLibraries": [
-        "lib/**/*.jar",
-        "/Users/brennanium/javafx-sdk-15/lib/*.jar"
-    ]
+    "java.project.referencedLibraries": {
+        "include": [
+            "lib/**/*.jar"
+        ]
+    }
 }
