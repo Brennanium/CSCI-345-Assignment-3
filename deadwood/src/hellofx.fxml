@@ -2,13 +2,17 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="552.0" prefWidth="822.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="697.0" prefWidth="982.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
     <children>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
          <children>
@@ -17,9 +21,9 @@
                     <Label fx:id="label" text="Day ..." />
                </children>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <VBox prefHeight="316.0" prefWidth="122.0">
+                  <VBox prefHeight="470.0" prefWidth="290.0">
                      <children>
                         <ImageView fitHeight="89.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -36,7 +40,7 @@
                         <Label layoutX="10.0" layoutY="140.0" text="Practice Chips" />
                      </children>
                   </VBox>
-                  <ImageView fitHeight="480.0" fitWidth="647.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="480.0" fitWidth="870.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../resources/board.jpg" />
                      </image>
@@ -48,6 +52,41 @@
                   <Button alignment="CENTER" mnemonicParsing="false" text="End Turn" />
                </children>
             </HBox>
+         </children>
+      </VBox>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <MenuBar>
+              <menus>
+                <Menu mnemonicParsing="false" text="File">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Close" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Edit">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Delete" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="About" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+         </children>
+      </HBox>
+      <VBox alignment="CENTER_LEFT" prefHeight="698.0" prefWidth="961.0">
+         <children>
+            <MenuButton mnemonicParsing="false" prefWidth="117.0" text="Choose Action">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Work" />
+                <MenuItem mnemonicParsing="false" text="Rehearse" />
+                  <MenuItem mnemonicParsing="false" text="Act" />
+                  <MenuItem mnemonicParsing="false" text="Upgrade" />
+              </items>
+            </MenuButton>
          </children>
       </VBox>
     </children>
