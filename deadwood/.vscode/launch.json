@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Main",
+            "request": "launch",
+            "vmArgs": "--module-path /Users/brennanium/javafx-sdk-15/lib --add-modules javafx.controls,javafx.fxml",
+            "mainClass": "Main"
+        }
+    ]
+}
