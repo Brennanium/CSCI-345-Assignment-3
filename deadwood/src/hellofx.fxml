@@ -24,7 +24,7 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <VBox prefHeight="470.0" prefWidth="290.0">
+                  <VBox prefHeight="470.0" prefWidth="290.0" spacing="1.0">
                      <children>
                         <ImageView fx:id="currentPlayerDiceImage" fitHeight="89.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -44,7 +44,7 @@
                         <Insets />
                      </opaqueInsets>
                      <padding>
-                        <Insets left="10.0" />
+                        <Insets left="10.0" top="10.0" />
                      </padding>
                   </VBox>
                   <ImageView fx:id="boardImageView" fitHeight="480.0" fitWidth="870.0" pickOnBounds="true" preserveRatio="true">
