@@ -1,31 +1,97 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Group?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="697.0" prefWidth="982.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Group xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <HBox fx:id="boardImageViewboardImageView" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
-         <StackPane.margin>
-            <Insets />
-         </StackPane.margin>
-      </HBox>
-      <ImageView fx:id="boardImageView" fitHeight="480.0" fitWidth="870.0" pickOnBounds="true" preserveRatio="true">
+      <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
+         <children>
+            <HBox fx:id="boardImageViewboardImageView" alignment="CENTER_LEFT">
+               <StackPane.margin>
+                  <Insets />
+               </StackPane.margin>
+            </HBox>
+            <ImageView fx:id="backCardTrainStation" fitHeight="150.0" fitWidth="160.0" layoutX="396.0" layoutY="314.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@resources/CardBack-small.jpg" />
+               </image>
+               <StackPane.margin>
+                  <Insets bottom="503.0" right="740.0" />
+               </StackPane.margin>
+            </ImageView>
+            <ImageView fx:id="backCardJail" fitHeight="150.0" fitWidth="160.0" layoutX="396.0" layoutY="314.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@resources/CardBack-small.jpg" />
+               </image>
+               <StackPane.margin>
+                  <Insets bottom="565.0" right="335.0" />
+               </StackPane.margin>
+            </ImageView>
+            <ImageView fx:id="backCardMainStreet" fitHeight="150.0" fitWidth="160.0" layoutX="396.0" layoutY="314.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@resources/CardBack-small.jpg" />
+               </image>
+               <StackPane.margin>
+                  <Insets bottom="565.0" left="730.0" />
+               </StackPane.margin>
+            </ImageView>
+         </children>
+      </StackPane>
+      <ImageView fx:id="boardImageView" fitHeight="900.0" fitWidth="1200.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@resources/board.jpg" />
          </image>
-         <StackPane.margin>
-            <Insets left="250.0" />
-         </StackPane.margin>
       </ImageView>
-      <ImageView fx:id="currentPlayerDiceImagecurrentPlayerDiceImage" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="currentPlayerDiceImage" fitHeight="42.0" fitWidth="46.0" layoutX="523.0" layoutY="722.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@resources/r2.png" />
          </image>
       </ImageView>
+      <ImageView fx:id="sceneCardSecretHideout" fitHeight="116.0" fitWidth="215.0" layoutX="26.0" layoutY="731.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@resources/01.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="backCardRanch" fitHeight="119.0" fitWidth="206.0" layoutX="251.0" layoutY="477.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@resources/CardBack-small.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="backCardBank" fitHeight="114.0" fitWidth="220.0" layoutX="624.0" layoutY="478.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@resources/CardBack-small.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="backCardChurch" fitHeight="115.0" fitWidth="205.0" layoutX="21.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@resources/CardBack-small.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="backCardHotel" fitHeight="150.0" fitWidth="160.0" layoutX="964.0" layoutY="737.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@resources/CardBack-small.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="backCardGeneralStore" fitHeight="115.0" fitWidth="205.0" layoutX="370.0" layoutY="282.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@resources/CardBack-small.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="backCardSaloon" fitHeight="114.0" fitWidth="229.0" layoutX="633.0" layoutY="281.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@resources/CardBack-small.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="shotToken" fitHeight="56.0" fitWidth="36.0" layoutX="359.0" layoutY="769.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@resources/shot.png" />
+         </image>
+      </ImageView>
    </children>
-</StackPane>
+</Group>
