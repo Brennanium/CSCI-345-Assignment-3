@@ -73,7 +73,7 @@
             <Image url="@resources/CardBack-small.jpg" />
          </image>
       </ImageView>
-      <ImageView fx:id="backCardHotel" fitHeight="150.0" fitWidth="160.0" layoutX="964.0" layoutY="737.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="backCardHotel" fitHeight="115.0" fitWidth="205.0" layoutX="967.0" layoutY="743.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@resources/CardBack-small.jpg" />
          </image>

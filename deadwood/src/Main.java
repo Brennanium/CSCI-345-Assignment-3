@@ -19,26 +19,42 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root, 1000, 700));
         primaryStage.show(); */
 
-        Parent root = FXMLLoader.load(getClass().getResource("boardView.fxml"));
-        //primaryStage.setTitle("Welcome to Deadwood");
+        /* Parent root = FXMLLoader.load(getClass().getResource("boardView.fxml"));
         primaryStage.setScene(new Scene(root, 1200, 900));
         primaryStage.setMinWidth(1200);
         primaryStage.setMinHeight(920);
 
         Board testBoard = Board.getInstance();
 
-        primaryStage.show();
-        /* Image diceImage =  new Image(getClass().getResourceAsStream("resources/r2.png"));
-        this.currentPlayerDiceImage.setImage(diceImage);
-        this.currentPlayerDiceImage.setLayoutX(100);
-        this.currentPlayerDiceImage.setLayoutY(100); */
+        primaryStage.show(); */
 
         //Parent root1 = FXMLLoader.load(getClass().getResource("currentPlayerInfoView.fxml"));
-        //primaryStage.setTitle("Welcome to Deadwood");
-        //primaryStage.setScene(new Scene(root1, 1000, 700));
+        //primaryStage.setScene(new Scene(root1, 1200, 900));
         //primaryStage.show();
         
+        /* Parent root = FXMLLoader.load(getClass().getResource("buttonListView.fxml"));
+        primaryStage.setScene(new Scene(root, 1200, 900));
+        primaryStage.setMinWidth(1200);
+        primaryStage.setMinHeight(920);
+        primaryStage.show(); */
 
+        /* Parent root = FXMLLoader.load(getClass().getResource("sceneCardView.fxml"));
+        primaryStage.setScene(new Scene(root, 1200, 900));
+        primaryStage.setMinWidth(1200);
+        primaryStage.setMinHeight(920);
+        primaryStage.show(); */
+
+        /* Parent root = FXMLLoader.load(getClass().getResource("playerDiceView.fxml"));
+        primaryStage.setScene(new Scene(root, 1200, 900));
+        primaryStage.setMinWidth(1200);
+        primaryStage.setMinHeight(920);
+        primaryStage.show(); */
+
+        /* Parent root = FXMLLoader.load(getClass().getResource("shotTokenView.fxml"));
+        primaryStage.setScene(new Scene(root, 45, 59));
+        primaryStage.setMinWidth(45);
+        primaryStage.setMinHeight(59);
+        primaryStage.show(); */
     }
 
 
