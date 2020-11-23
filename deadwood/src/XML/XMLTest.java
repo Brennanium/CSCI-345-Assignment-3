@@ -1,4 +1,4 @@
-package deadwood.XML;
+package XML;
 
 // Example Code for parsing XML file
 // Dr. Moushumi Sharmin
@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 import org.w3c.dom.Document;
 //import deadwood.model.*;
-import deadwood.model.areas.*;
+import model.areas.*;
 
 
 public class XMLTest{
