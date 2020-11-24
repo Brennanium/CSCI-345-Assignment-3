@@ -7,15 +7,20 @@ import model.events.*;
 import java.util.*;
 
 public class ActionManager {
-    private Game game;
+    private static ActionManager instance = new ActionManager();
     
+    
+    private Game game;
+
     /**
      * Constructor
-     * 
-     * @param players
      */
-    public ActionManager(ArrayList<Player> players){
-        game = new Game(players);
+    private ActionManager(){
+        game = new Game();
+    }
+
+    public void setPlayers(ArrayList<Player> players) {
+        game.setPlayers(players);
     }
     
     /**
@@ -368,5 +373,10 @@ public class ActionManager {
      */
     public ArrayList<Area> getCurrentNeighbors(){
         return game.getCurrentPlayer().getCurrentArea().getNeighbors();
+    }
+
+
+    public static ActionManager getInstance() {
+        return instance;
     }
 }

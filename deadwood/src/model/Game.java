@@ -21,6 +21,11 @@ public class Game {
      * 
      * @param players
      */
+    public Game() {
+        board = Board.getInstance();
+        board.dealSceneCards();
+    }
+
     public Game(ArrayList<Player> players) {
         this.players = players;
 
@@ -33,6 +38,18 @@ public class Game {
         board = Board.getInstance();
         board.dealSceneCards();
 
+        initPlayers();
+    }
+
+    public void setPlayers(ArrayList<Player> players) {
+        this.players = players;
+
+        List<Player> playersCopy = players.stream()
+            .map(p -> p)
+            .collect(Collectors.toList());
+        playersInTurnOrder = new ArrayList<Player>(playersCopy);
+        Collections.shuffle(playersInTurnOrder);
+        
         initPlayers();
     }
 
