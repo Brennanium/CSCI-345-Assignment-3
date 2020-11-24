@@ -14,10 +14,10 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        /* Parent root = FXMLLoader.load(getClass().getResource("hellofx.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("startScreenView.fxml"));
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(root, 1000, 700));
-        primaryStage.show(); */
+        primaryStage.show();
 
         /* Parent root = FXMLLoader.load(getClass().getResource("boardView.fxml"));
         primaryStage.setScene(new Scene(root, 1200, 900));
@@ -50,11 +50,11 @@ public class Main extends Application {
         primaryStage.setMinHeight(920);
         primaryStage.show(); */
 
-        Parent root = FXMLLoader.load(getClass().getResource("shotTokenView.fxml"));
+        /* Parent root = FXMLLoader.load(getClass().getResource("shotTokenView.fxml"));
         primaryStage.setScene(new Scene(root, 45, 59));
         primaryStage.setMinWidth(45);
         primaryStage.setMinHeight(59);
-        primaryStage.show();
+        primaryStage.show(); */
 
        /*  Parent root = FXMLLoader.load(getClass().getResource("shotTokenView.fxml"));
         primaryStage.setScene(new Scene(root, 45, 59));

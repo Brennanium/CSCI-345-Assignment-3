@@ -10,11 +10,11 @@
 <?import javafx.scene.layout.VBox?>
 
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #F2BF92; -fx-border-color: #281402; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="StartScreenViewController">
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
          <children>
-            <ImageView fitHeight="137.0" fitWidth="536.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="gameLogoImageView" fitHeight="137.0" fitWidth="536.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@resources/Images%20From%20Rules/image--001.jpg" />
                </image>
@@ -25,7 +25,7 @@
             <Region maxHeight="100.0" minHeight="0.0" prefHeight="50.0" />
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
                <children>
-                  <Button mnemonicParsing="false" text="New Game" />
+                  <Button fx:id="startGameButton" mnemonicParsing="false" onAction="#handleButtonAction" text="New Game" />
                </children>
             </HBox>
          </children>
