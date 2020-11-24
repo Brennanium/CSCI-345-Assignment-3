@@ -50,11 +50,20 @@ public class Main extends Application {
         primaryStage.setMinHeight(920);
         primaryStage.show(); */
 
-        /* Parent root = FXMLLoader.load(getClass().getResource("shotTokenView.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("shotTokenView.fxml"));
         primaryStage.setScene(new Scene(root, 45, 59));
         primaryStage.setMinWidth(45);
         primaryStage.setMinHeight(59);
+        primaryStage.show();
+
+       /*  Parent root = FXMLLoader.load(getClass().getResource("shotTokenView.fxml"));
+        primaryStage.setScene(new Scene(root, 45, 59));
+        primaryStage.setBackground(new Background(new BackgroundFill(Gauge.DARK_COLOR, CornerRadii.EMPTY)));
+
+        primaryStage.setMinWidth(45);
+        primaryStage.setMinHeight(59);
         primaryStage.show(); */
+        
     }
 
 
