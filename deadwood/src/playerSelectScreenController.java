@@ -78,7 +78,7 @@ public class playerSelectScreenController {
 
                 //switch scene
                 stage = (Stage) startGameButton.getScene().getWindow();
-                root = FXMLLoader.load(getClass().getResource("playerSelectScreen.fxml"));
+                root = FXMLLoader.load(getClass().getResource("mainGame.fxml"));
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
                 stage.show();
@@ -143,15 +143,13 @@ public class playerSelectScreenController {
                     name = ((TextField)n).getText();
                 }
                 if(n instanceof ComboBox) {
-                    name = (String)((ComboBox)n).getSelectionModel().getSelectedItem();
+                    color = (String)((ComboBox)n).getSelectionModel().getSelectedItem();
                 }
             }
-            if(!name.isEmpty() && !color.isEmpty()){
+            if(!name.isEmpty() && color != null && !color.isEmpty()){
                 players.add(new Player(name, color));
             }
         }
-
-        players.forEach(p -> System.out.println(p));
 
         return players;
     }

@@ -6,8 +6,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.VBox?>
 
-
-<VBox fx:id="currentPlayerDiceImagecurrentPlayerDiceImage" prefHeight="219.0" prefWidth="245.0" style="-fx-background-color: #F2BF92#F2BF92;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:id="currentPlayerDiceImagecurrentPlayerDiceImage" prefHeight="219.0" prefWidth="245.0" style="-fx-background-color: #F2BF92#F2BF92;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="currentPlayerInfoViewController">
    <children>
       <ImageView fx:id="currentPlayerDiceImage" fitHeight="89.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -25,7 +24,7 @@
             <Insets bottom="5.0" left="20.0" />
          </padding>
       </Label>
-      <Label text="Money:">
+      <Label fx:id="currentPlayerMoneyLabel" text="Money:">
          <padding>
             <Insets bottom="5.0" left="20.0" />
          </padding>
@@ -35,27 +34,27 @@
             <Insets bottom="5.0" left="20.0" />
          </padding>
       </Label>
-      <Label prefHeight="17.0" prefWidth="188.0" text="Successful Scenes:">
+      <Label fx:id="currentPlayerSuccessfulScenesLabel" prefHeight="17.0" prefWidth="188.0" text="Successful Scenes:">
          <padding>
             <Insets bottom="5.0" left="20.0" />
          </padding>
       </Label>
-      <Label text="Rank:">
+      <Label fx:id="currentPlayerRankLabel" text="Rank:">
          <padding>
             <Insets bottom="5.0" left="20.0" />
          </padding>
       </Label>
-      <Label text="Current Area:">
+      <Label fx:id="currentPlayerCurrentAreaLabel" text="Current Area:">
          <padding>
             <Insets bottom="5.0" left="20.0" />
          </padding>
       </Label>
-      <Label text="Current Role:">
+      <Label fx:id="currentPlayerCurrentRoleLabel" text="Current Role:">
          <padding>
             <Insets bottom="5.0" left="20.0" />
          </padding>
       </Label>
-      <Label text="Number of Practice Chips:">
+      <Label fx:id="currentPlayerPracticeChipsLabel" text="Number of Practice Chips:">
          <padding>
             <Insets bottom="5.0" left="20.0" />
          </padding>

@@ -13,7 +13,7 @@ import org.w3c.dom.Document;
 
 //singleton class
 public class Board {
-    private final String DEFAULT_XML_FILEPATH = "./resources/XML/"; 
+    private final String DEFAULT_XML_FILEPATH = "./src/resources/XML/"; 
 
     private static Board instance = new Board();
     

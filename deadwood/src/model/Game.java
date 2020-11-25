@@ -16,16 +16,22 @@ public class Game {
     private int maxCountDay;
     private int countDay;
 
+    HashSet<PlayerObserver> observers = new HashSet<PlayerObserver>();
+
     /**
      * Constructor
      * 
-     * @param players
      */
     public Game() {
         board = Board.getInstance();
         board.dealSceneCards();
     }
 
+    /**
+     * Constructor
+     * 
+     * @param players
+     */
     public Game(ArrayList<Player> players) {
         this.players = players;
 
@@ -41,6 +47,10 @@ public class Game {
         initPlayers();
     }
 
+    /**
+     * 
+     * @param players
+     */
     public void setPlayers(ArrayList<Player> players) {
         this.players = players;
 
@@ -71,6 +81,8 @@ public class Game {
         currentPlayerHasRehearsed = false;
         currentPlayerHasUpgraded = false;
         currentPlayerHasTakenRole = false;
+
+        updateObservers();
     }
 
     /**
@@ -288,5 +300,25 @@ public class Game {
                 p.setRank(startingRank);
                 p.pay(0, startingCredits);
             });
+    }
+
+    public void addObserverToPlayers(PlayerObserver po) {
+        addObserver(po);
+        players.stream()
+            .forEach(p -> p.addObserver(po));
+    }
+
+    private void updateObservers() {
+        for(PlayerObserver po : observers) {
+            po.update(currentPlayer);
+        }
+    }
+
+    public void addObserver(PlayerObserver po) {
+        observers.add(po);
+    }
+
+    public void removeObserver(PlayerObserver po) {
+        observers.remove(po);
     }
 }

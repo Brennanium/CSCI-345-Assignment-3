@@ -376,6 +376,14 @@ public class ActionManager {
         return game.getCurrentPlayer().getCurrentArea().getNeighbors();
     }
 
+    
+    /**
+     * 
+     * @return Game
+     */
+    public Game getCurrentGame(){
+        return game;
+    }
 
     public static ActionManager getInstance() {
         return instance;
