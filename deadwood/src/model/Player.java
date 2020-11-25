@@ -18,9 +18,11 @@ public class Player{
      * Constructor
      * 
      * @param pName
+     * @param color
      */
-    public Player(String pName){
+    public Player(String pName, String color){
         this.name = pName;
+        this.color = color;
         this.pRank = 1;
     }
 

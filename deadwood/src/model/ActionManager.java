@@ -20,7 +20,8 @@ public class ActionManager {
     }
 
     public void setPlayers(ArrayList<Player> players) {
-        game.setPlayers(players);
+        game = new Game(players);
+        //game.setPlayers(players);
     }
     
     /**

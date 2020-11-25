@@ -13,8 +13,7 @@ import org.w3c.dom.Document;
 
 //singleton class
 public class Board {
-    //private final String DEFAULT_XML_FILEPATH = "./CSCI-345-Assignment-2/deadwood/XML/"; //from VSCode
-    private final String DEFAULT_XML_FILEPATH = "./resources/XML/"; //from terminal
+    private final String DEFAULT_XML_FILEPATH = "./resources/XML/"; 
 
     private static Board instance = new Board();
     
@@ -41,6 +40,8 @@ public class Board {
         try {
             boardDoc = parsing.getDocFromFile(DEFAULT_XML_FILEPATH + "board.xml");
             areas = parsing.readAreaData(boardDoc);
+            if(areas == null) 
+                System.out.println("areas is null");
 
         }  catch(Exception e){
             System.out.println("Error = " + e);
@@ -57,6 +58,8 @@ public class Board {
         try {
             cardsDoc = parsing.getDocFromFile(DEFAULT_XML_FILEPATH + "cards.xml");
             undealtSceneCards = parsing.readSceneData(cardsDoc);
+            if(undealtSceneCards == null) 
+                System.out.println("undealtSceneCards is null");
 
         }  catch(Exception e){
             System.out.println("Error = " + e);
@@ -122,6 +125,9 @@ public class Board {
      * @return ArrayList<Set>
      */
     private ArrayList<Set> getSets() {
+        if(areas == null) {
+            getAreasFromXML();
+        }
         List<Set> sets = areas.stream()
             .filter(a -> a instanceof Set)
             .map((Area a) -> (Set)a)
