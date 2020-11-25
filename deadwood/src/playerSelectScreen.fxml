@@ -2,6 +2,8 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Text?>
@@ -26,5 +28,14 @@
             <ComboBox fx:id="numOfPlayers" prefHeight="27.0" prefWidth="185.0" promptText="Select number of players" />
          </children>
       </HBox>
+      <StackPane maxHeight="65.0" maxWidth="210.0" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: brown;">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@resources/Images%20From%20Rules/image--001.jpg" />
+               </image>
+            </ImageView>
+         </children>
+      </StackPane>
    </children>
 </StackPane>

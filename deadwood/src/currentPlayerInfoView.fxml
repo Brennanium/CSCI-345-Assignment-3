@@ -4,79 +4,64 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="697.0" prefWidth="982.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+
+<VBox fx:id="currentPlayerDiceImagecurrentPlayerDiceImage" prefHeight="219.0" prefWidth="245.0" style="-fx-background-color: #F2BF92#F2BF92;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
-         <children>
-            <VBox fx:id="currentPlayerDiceImagecurrentPlayerDiceImage" prefHeight="470.0" prefWidth="290.0">
-               <children>
-                  <ImageView fx:id="currentPlayerDiceImage" fitHeight="89.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@resources/r2.png" />
-                     </image>
-                     <VBox.margin>
-                        <Insets bottom="5.0" left="20.0" top="50.0" />
-                     </VBox.margin>
-                  </ImageView>
-                  <Label fx:id="currentPlayerNameLabel" text="Name">
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                     <padding>
-                        <Insets bottom="5.0" left="20.0" />
-                     </padding>
-                  </Label>
-                  <Label text="Money">
-                     <padding>
-                        <Insets bottom="5.0" left="20.0" />
-                     </padding>
-                  </Label>
-                  <Label fx:id="currentPlayerCreditsLabel" text="Credits">
-                     <padding>
-                        <Insets bottom="5.0" left="20.0" />
-                     </padding>
-                  </Label>
-                  <Label prefHeight="17.0" prefWidth="188.0" text="Successful Scenes">
-                     <padding>
-                        <Insets bottom="5.0" left="20.0" />
-                     </padding>
-                  </Label>
-                  <Label text="Rank">
-                     <padding>
-                        <Insets bottom="5.0" left="20.0" />
-                     </padding>
-                  </Label>
-                  <Label text="Current Area">
-                     <padding>
-                        <Insets bottom="5.0" left="20.0" />
-                     </padding>
-                  </Label>
-                  <Label text="Current Role">
-                     <padding>
-                        <Insets bottom="5.0" left="20.0" />
-                     </padding>
-                  </Label>
-                  <Label text="Number of Practice Chips">
-                     <padding>
-                        <Insets bottom="5.0" left="20.0" />
-                     </padding>
-                  </Label>
-               </children>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-               <padding>
-                  <Insets top="100.0" />
-               </padding>
-            </VBox>
-         </children>
-      </HBox>
+      <ImageView fx:id="currentPlayerDiceImage" fitHeight="89.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@resources/r2.png" />
+         </image>
+         <VBox.margin>
+            <Insets bottom="5.0" left="20.0" top="10.0" />
+         </VBox.margin>
+      </ImageView>
+      <Label fx:id="currentPlayerNameLabel" text="Name:">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets bottom="5.0" left="20.0" />
+         </padding>
+      </Label>
+      <Label text="Money:">
+         <padding>
+            <Insets bottom="5.0" left="20.0" />
+         </padding>
+      </Label>
+      <Label fx:id="currentPlayerCreditsLabel" text="Credits:">
+         <padding>
+            <Insets bottom="5.0" left="20.0" />
+         </padding>
+      </Label>
+      <Label prefHeight="17.0" prefWidth="188.0" text="Successful Scenes:">
+         <padding>
+            <Insets bottom="5.0" left="20.0" />
+         </padding>
+      </Label>
+      <Label text="Rank:">
+         <padding>
+            <Insets bottom="5.0" left="20.0" />
+         </padding>
+      </Label>
+      <Label text="Current Area:">
+         <padding>
+            <Insets bottom="5.0" left="20.0" />
+         </padding>
+      </Label>
+      <Label text="Current Role:">
+         <padding>
+            <Insets bottom="5.0" left="20.0" />
+         </padding>
+      </Label>
+      <Label text="Number of Practice Chips:">
+         <padding>
+            <Insets bottom="5.0" left="20.0" />
+         </padding>
+      </Label>
    </children>
-</StackPane>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+</VBox>

@@ -9,7 +9,7 @@ public class sceneCardViewController {
     private ImageView frontSceneCard;
 
     public void initializa(){
-        Image back = new Image(getClass().getResourceAsStream("/resources/CardBack-mall.jpg"));
+        Image back = new Image(getClass().getResourceAsStream("/resources/CardBack-small.jpg"));
         backSceneCard.setImage(back);
 
         Image front = new Image(getClass().getResourceAsStream("/resources/01.png"));
