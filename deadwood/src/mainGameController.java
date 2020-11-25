@@ -13,7 +13,6 @@ import model.*;
 import model.areas.CastingOffice;
 
 
-
 public class mainGameController implements PlayerObserver {
 
     @FXML
@@ -82,20 +81,36 @@ public class mainGameController implements PlayerObserver {
         if(player == model.getCurrentPlayer()){ 
             if(player.getCurrentArea() instanceof CastingOffice) {
                 upgradeButton.setVisible(true);
+                actButton.setVisible(false);
+                workButton.setVisible(false);
+            } else{
+                actButton.setVisible(true);
+                workButton.setVisible(true);
+                upgradeButton.setVisible(false);
             }
             if(player.getRole() != null){
                 moveSplitMenuButton.setVisible(false);
                 workButton.setVisible(false);
                 upgradeButton.setVisible(false);
+                rehearseButton.setVisible(true);
+                actButton.setVisible(true);
             } else {
                 moveSplitMenuButton.setVisible(true);
                 workButton.setVisible(true);
+                rehearseButton.setVisible(false);
+                actButton.setVisible(false);;
             }
 
 
 
             if(moveSplitMenuButton.isVisible()) {
-                //loop through and add neighbors
+                //loop through and add neighbors        
+                player = model.getCurrentPlayer();
+                StringBuffer sb = new StringBuffer();
+                //for(int i = 0; i < player.getCurrentArea().getNeighbors().size(); i++){
+                    MenuItem menuItems = new MenuItem(player.getCurrentArea().getNeighbors().forEach(b -> b.toString()));
+                    SplitMenuButton moveSplitMenuButton = new SplitMenuButton(menuItems);
+                //}
             }
         }
     }
