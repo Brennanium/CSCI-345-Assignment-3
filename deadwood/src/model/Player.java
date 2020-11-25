@@ -79,6 +79,7 @@ public class Player{
     public int getCredits() {
         return credits;
     }
+    
     /**
      * To get the score of the player
      * @return int

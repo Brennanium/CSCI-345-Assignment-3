@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SplitMenuButton?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
@@ -15,16 +14,11 @@
             <HBox fx:id="mainBG" minHeight="100.0" minWidth="200.0" />
             <HBox alignment="CENTER" spacing="5.0">
                <children>
-                  <SplitMenuButton fx:id="moveSplitMenuButton" mnemonicParsing="false" text="Move">
-                    <items>
-                      <MenuItem mnemonicParsing="false" text="Action 1" />
-                      <MenuItem mnemonicParsing="false" text="Action 2" />
-                    </items>
-                  </SplitMenuButton>
-                  <Button fx:id="workButton" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="27.0" prefWidth="72.0" text="Work" />
+                  <SplitMenuButton fx:id="moveSplitMenuButton" mnemonicParsing="false" text="Move" />
+                  <SplitMenuButton fx:id="workSplitMenuButton" mnemonicParsing="false" text="Work" />
                   <Button fx:id="actButton" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="27.0" prefWidth="72.0" text="Act" />
                   <Button fx:id="rehearseButton" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="27.0" prefWidth="72.0" text="Rehearse" />
-                  <Button fx:id="upgradeButton" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="27.0" prefWidth="72.0" text="Upgrade" />
+                  <SplitMenuButton fx:id="upgradeSplitMenuButton" mnemonicParsing="false" text="Upgrade" />
                   <Button fx:id="endTurnButton" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="27.0" prefWidth="72.0" text="End Turn" />
                </children>
                <padding>

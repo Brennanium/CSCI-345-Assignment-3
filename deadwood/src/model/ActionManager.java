@@ -9,7 +9,6 @@ import java.util.*;
 public class ActionManager {
     private static ActionManager instance = new ActionManager();
     
-    
     private Game game;
 
     /**
@@ -19,6 +18,10 @@ public class ActionManager {
         game = new Game();
     }
 
+    /**
+     * To set all the players to the game
+     * @param players
+     */
     public void setPlayers(ArrayList<Player> players) {
         game = new Game(players);
         //game.setPlayers(players);
@@ -26,8 +29,7 @@ public class ActionManager {
     
     /**
      * 
-     * 
-     * @param areaString
+     * To move the player to where ever theplayer whishes to go
      * @return Event
      * @throws InvalidActionException
      */
@@ -74,7 +76,7 @@ public class ActionManager {
     }
 
     /**
-     * 
+     * To set the player to whichever the role that he/she would like to work
      * @param roleString
      * @return Event
      * @throws InvalidActionException
@@ -115,7 +117,6 @@ public class ActionManager {
         }
         return null;
     }
-
 
     /**
      * 
@@ -190,9 +191,14 @@ public class ActionManager {
             if(currentRole != null) {
                 if(currentPlayer.getPracticeChips() < currentArea.getBudget()) {
                     if(!game.getHasRehearsed()){
-                        currentPlayer.addPracticeChip();
-                        game.hasRehearsed();
-                        game.hasActed();
+                        if(!game.getHasTakenRole() && !game.getHasActed()) {
+                            currentPlayer.addPracticeChip();
+                            game.hasRehearsed();
+                            game.hasActed();
+                        } else {
+                            throw new InvalidActionException(
+                                currentPlayer.getName() + " has already taken a role this turn.");
+                        }
                     } else {
                         throw new InvalidActionException(currentPlayer.getName() + " has already rehearsed or acted this turn.");
                     }

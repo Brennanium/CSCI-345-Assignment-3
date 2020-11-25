@@ -82,7 +82,7 @@ public class XMLParser {
          takes = set.getElementsByTagName("take");
          takesCount = takes.getLength();
          takesCoords = new Rectangle[takesCount];
-         for(int j = 0; i<takes.getLength(); i++) {
+         for(int j = 0; j<takes.getLength(); j++) {
             take = (Element)takes.item(j);
             takeOrder = Integer.parseInt(take.getAttributes().getNamedItem("number").getNodeValue());
             takesCoords[takeOrder - 1] = getCoordsFromElement((Element)take.getElementsByTagName("area").item(0));
@@ -107,7 +107,8 @@ public class XMLParser {
          
          //initialize Set
          area = new Set(areaName, takesCount, roles.toArray(new Role[0]), sceneCardCoords, takesCoords);
-         if(areaName != null)
+
+         if(areaName != null && !isDuplicateArea(area))
             areas.add(area);
             
       }//for book nodes
@@ -190,6 +191,12 @@ public class XMLParser {
 
       return areas;
    
+   }
+
+   private boolean isDuplicateArea(Area area){
+      return areas.contains(area) || 
+      areas.stream()
+          .anyMatch(a -> a.getName().equalsIgnoreCase(area.getName()));
    }
 
    private void addNeighbors(Area area, NodeList neighborNodes){

@@ -29,7 +29,7 @@ public class Main extends Application {
         primaryStage.show(); */
 
         //Parent root1 = FXMLLoader.load(getClass().getResource("currentPlayerInfoView.fxml"));
-        //primaryStage.setScene(new Scene(root1, 1200, 900));
+        //primaryStage.setScene(new Scene(r oot1, 1200, 900));
         //primaryStage.show();
         
         /* Parent root = FXMLLoader.load(getClass().getResource("buttonListView.fxml"));

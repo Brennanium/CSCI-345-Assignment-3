@@ -11,7 +11,7 @@ public class CastingOffice extends Area {
     private HashMap<Integer, Integer> creditsForRank;
     
     /**
-     * 
+     * Constructor
      * @param moneyForRank
      * @param creditsForRank
      */
@@ -22,7 +22,7 @@ public class CastingOffice extends Area {
     }
 
     /**
-     * 
+     * To get player's money for upgrading
      * @param rank
      * @return Integer
      */
@@ -31,7 +31,7 @@ public class CastingOffice extends Area {
     }
     
     /**
-     * 
+     * To get player's credits for upgrading
      * @param rank
      * @return Integer
      */
@@ -40,7 +40,7 @@ public class CastingOffice extends Area {
     }
 
     /**
-     * 
+     * To check whether player can afford the rank that they want
      * @param p
      * @param rank
      * @return boolean
@@ -60,15 +60,35 @@ public class CastingOffice extends Area {
     }
 
     /**
-     * 
+     * To get all the possibilities of all the ranks that the player can upgrade to
+     * @param p
+     * @return ArrayLIst<Integer>
+     * @throws InvalidActionException
+     */
+    public ArrayList<Integer> affordablePlayerRanks(Player p){
+        int rank = p.getRank();
+        ArrayList<Integer> affordableRanks = new ArrayList<Integer>();
+
+        moneyForRank.forEach((k, v) -> {
+            Integer money = moneyForRank.get(k);
+            Integer credits = creditsForRank.get(k);
+            if(p.getCredits() >= credits && p.getDollars() >= money) {
+                affordableRanks.add(k);
+            }
+        });
+
+        return affordableRanks;
+    }
+
+    /**
+     * To get the rank in the form of string
      * @return ArrayList<String>
      */
     public ArrayList<String> getRankUpgradeStrings() {
         ArrayList<String> strings = new ArrayList<String>();
 
         moneyForRank.forEach((k, v) -> {
-            String str = String.format(
-                "Rank %d: $%d, %d credits", k, v, creditsForRank.get(k));
+            String str = getUpgradeStringForRank(k);
             strings.add(str);
         });
 
@@ -76,7 +96,18 @@ public class CastingOffice extends Area {
     }
 
     /**
-     * 
+     * To get the upgrade in string for rank
+     * @param r
+     * @return String
+     */
+    public String getUpgradeStringForRank(int r) {
+        String str = String.format(
+                "Rank %d: $%d, %d credits", r, moneyForRank.get(r), creditsForRank.get(r));
+    
+        return str;
+    }
+    /**
+     * To get the summary of the area, where is whose are the neighbors of Casting Office
      * @return String
      */
     public String getAreaSummary() {
@@ -88,7 +119,7 @@ public class CastingOffice extends Area {
     }
 
     /**
-     * 
+     * To format the name of Casting Office
      * @return String
      */
     public String toString() {

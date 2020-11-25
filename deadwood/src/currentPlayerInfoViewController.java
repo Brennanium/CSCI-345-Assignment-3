@@ -47,6 +47,10 @@ public class currentPlayerInfoViewController implements PlayerObserver {
 
     public void update(Player player) {
         if(player == model.getCurrentPlayer()){
+            currentPlayerCurrentRoleLabel.setVisible(false);
+            currentPlayerPracticeChipsLabel.setVisible(false);
+            currentPlayerSuccessfulScenesLabel.setVisible(false);
+
             if(player.getRole() != null){
                 currentPlayerCurrentRoleLabel.setVisible(true);
                 currentPlayerCurrentRoleLabel.setText(

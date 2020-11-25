@@ -256,8 +256,6 @@ public class Game {
      * sets the proper starting rank, credits, and number of days
      */
     public void initPlayers(){
-        setNextPlayer();
-        
         int startingRank;
         int startingCredits;
         switch(players.size()){
@@ -300,6 +298,8 @@ public class Game {
                 p.setRank(startingRank);
                 p.pay(0, startingCredits);
             });
+        
+        setNextPlayer();
     }
 
     public void addObserverToPlayers(PlayerObserver po) {
@@ -312,6 +312,10 @@ public class Game {
         for(PlayerObserver po : observers) {
             po.update(currentPlayer);
         }
+    }
+
+    public void forceUpdate() {
+        updateObservers();
     }
 
     public void addObserver(PlayerObserver po) {
