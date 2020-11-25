@@ -1,8 +1,16 @@
+
+import java.util.*;
+
+import javafx.collections.*;
+import javafx.event.ActionEvent;
 import javafx.fxml.*;
 import javafx.geometry.Insets;
 import javafx.scene.*;
-import javafx.scene.layout.HBox;
-import javafx.stage.Stage;
+import javafx.scene.control.*;
+import javafx.scene.layout.*;
+import javafx.stage.*;
+import model.*;
+
 
 
 public class mainGameController {
@@ -14,29 +22,23 @@ public class mainGameController {
         Stage stage;
         Parent board;
         Parent playerInfo;
+        Parent buttons;
         
-        //stage = (Stage)
-        //stage =  
         board = FXMLLoader.load(getClass().getResource("boardView.fxml"));
         playerInfo = FXMLLoader.load(getClass().getResource("currentPlayerInfoView.fxml"));
-
-        Scene scene = new Scene(board);
-        
-        //stage.setScene(scene);
-        //stage.show();
-        //HBox mainBG = new HBox();
-       // mainBG.setId("currentPlayerInfoView.fxml");
-
-
-        
-    }
-
-    private Parent makeNewHBox(){
+        buttons = FXMLLoader.load(getClass().getResource("buttonListView.fxml"));
         HBox mainBG = new HBox();
-        mainBG.setPadding(new Insets(10, 0, 0, 10));
+        mainBG.getChildren().add(board);
+        mainBG.getChildren().add(playerInfo);
+        mainBG.getChildren().add(buttons);
 
-        return mainBG;
+        Scene scene = new Scene(mainBG);
+        
+        stage.setScene(scene);
+        stage.show();
 
+
+        
     }
 
 
