@@ -7,6 +7,7 @@ import javafx.fxml.*;
 import javafx.geometry.Insets;
 import javafx.scene.*;
 import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.*;
 import javafx.stage.*;
 import model.*;
@@ -73,13 +74,10 @@ public class mainGameController implements PlayerObserver {
                 model.end();
             }
         } catch(InvalidActionException e) {
-            //it's real easy to just popup from anywhere
-            /* Popup up = new Popup();
-            up.title("invalid action")
-            up.body(e.getReason() */
-
-            //more complicated case?
-            /* stage = (Stage) endTurnButton.getScene().getWindow(); */
+            Alert a = new Alert(AlertType.NONE, e.getReason(), ButtonType.OK);
+            a.setTitle("Invalid Action");
+            a.setHeaderText("Invalid Action");
+            a.show();
 
             System.out.println("Invalid Action: " + e.getReason());
         }
@@ -179,6 +177,11 @@ public class mainGameController implements PlayerObserver {
         try {
             model.move(areaName);
         } catch(InvalidActionException e) {
+            Alert a = new Alert(AlertType.NONE, e.getReason(), ButtonType.OK);
+            a.setTitle("Invalid Action");
+            a.setHeaderText("Invalid Action");
+            a.show();
+
             System.out.println("Invalid Action: " + e.getReason());
         }
     } 
@@ -187,6 +190,11 @@ public class mainGameController implements PlayerObserver {
         try {
             model.takeRole(roleName);
         } catch(InvalidActionException e) {
+            Alert a = new Alert(AlertType.NONE, e.getReason(), ButtonType.OK); 
+            a.setTitle("Invalid Action");
+            a.setHeaderText("Invalid Action");
+            a.show();
+            
             System.out.println("Invalid Action: " + e.getReason());
         }
     } 
@@ -195,6 +203,11 @@ public class mainGameController implements PlayerObserver {
         try {
             model.upgrade(rank);
         } catch(InvalidActionException e) {
+            Alert a = new Alert(AlertType.NONE, e.getReason(), ButtonType.OK);
+            a.setTitle("Invalid Action");
+            a.setHeaderText("Invalid Action");
+            a.show();
+
             System.out.println("Invalid Action: " + e.getReason());
         }
     } 
