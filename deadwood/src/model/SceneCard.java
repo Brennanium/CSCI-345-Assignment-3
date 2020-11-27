@@ -10,7 +10,7 @@ public class SceneCard {
     private String image;
 
     /**
-     * 
+     * Constructor
      * @param name
      * @param number
      * @param budget
@@ -29,7 +29,7 @@ public class SceneCard {
 
     // getters
     /**
-     * 
+     * To get the scene name
      * @return String
      */
     public String getSceneName() {
@@ -37,7 +37,7 @@ public class SceneCard {
     }
 
     /**
-     * 
+     * To get the scene number
      * @return int
      */
     public int getsceneNumber(){
@@ -45,7 +45,7 @@ public class SceneCard {
     }
 
     /**
-     * 
+     * To get the description of the scene
      * @return String
      */
     public String getDescr(){
@@ -53,7 +53,7 @@ public class SceneCard {
     }
 
     /**
-     * 
+     * To get the budget of the scene
      * @return int
      */
     public int getBudget() {
@@ -61,7 +61,7 @@ public class SceneCard {
     }
 
     /**
-     *  
+     * To get the image of the scene card
      * @return String
      */
     public String getImageString(){
@@ -69,7 +69,7 @@ public class SceneCard {
     }
 
     /**
-     * 
+     * To check whether the card is in-used or not
      * @return boolean
      */
     public boolean getIsActive() {
@@ -77,7 +77,7 @@ public class SceneCard {
     }
 
     /**
-     * 
+     * To get all of the on card roles
      * @return Role[]
      */
     public Role[] getOnCardRoles(){
@@ -85,7 +85,7 @@ public class SceneCard {
     }
     
     /**
-     * 
+     * To gt the number of on card roles
      * @return int
      */
     public int getOnCardRolesCount(){
@@ -93,7 +93,7 @@ public class SceneCard {
     }
       
     /**
-     * 
+     * To get the role from the string
      * @param roleString
      * @return Role
      */
@@ -107,21 +107,21 @@ public class SceneCard {
     }
 
     /**
-     * 
+     * To deal the scene card
      */
     public void dealScene() {
         isActive = true;
     }
     
     /**
-     * 
+     * To wrap the scene
      */
     public void wrapScene() {
         isActive = false;
     }
 
     /**
-     * 
+     * To format the string to printout the information of the scene
      * @return String
      */
     public String toString(){

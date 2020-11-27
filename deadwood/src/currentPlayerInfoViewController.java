@@ -8,7 +8,7 @@ import model.*;
 public class currentPlayerInfoViewController implements PlayerObserver {
 
     @FXML
-    private ImageView currentPlayerDiceImage;
+    private ImageView currentPlayerDiceImageView;
     @FXML
     private Label currentPlayerNameLabel;
     @FXML
@@ -26,12 +26,14 @@ public class currentPlayerInfoViewController implements PlayerObserver {
     @FXML
     private Label currentPlayerPracticeChipsLabel;
 
+    private Image diceImage;
+
     private ActionManager model = ActionManager.getInstance();
 
     public void initialize() {
 
-        Image diceImage = new Image(getClass().getResourceAsStream("resources/r2.png"));
-        currentPlayerDiceImage.setImage(diceImage);
+        diceImage = new Image(getClass().getResourceAsStream("resources/dice/" + model.getCurrentPlayer().getImageString()));
+        currentPlayerDiceImageView.setImage(diceImage);
 
         model.getCurrentGame().addObserverToPlayers(this);
 
@@ -47,6 +49,9 @@ public class currentPlayerInfoViewController implements PlayerObserver {
 
     public void update(Player player) {
         if(player == model.getCurrentPlayer()){
+            diceImage = new Image(getClass().getResourceAsStream("resources/dice/" + model.getCurrentPlayer().getImageString()));
+            currentPlayerDiceImageView.setImage(diceImage);
+            
             currentPlayerCurrentRoleLabel.setVisible(false);
             currentPlayerPracticeChipsLabel.setVisible(false);
             currentPlayerSuccessfulScenesLabel.setVisible(false);

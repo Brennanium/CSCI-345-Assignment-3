@@ -10,7 +10,7 @@ public class Role {
     private Rectangle position;
 
     /**
-     * 
+     * Constructor
      * @param roleName
      * @param rank
      * @param description
@@ -25,7 +25,7 @@ public class Role {
     }
 
     /**
-     * 
+     * To check whether the role is on card or not
      * @return boolean
      */
 	public boolean checkOnCard(){
@@ -33,7 +33,7 @@ public class Role {
     }
 
     /**
-     * 
+     * To get the role description
      * @return String
      */
     public String getDescription() {
@@ -41,7 +41,7 @@ public class Role {
     }
     
     /**
-     * 
+     * To check whether the player can afford that role or not from their rank
      * @param pRank
      * @return boolean
      */
@@ -54,7 +54,7 @@ public class Role {
     }
 
     /**
-     * 
+     * To get the rank of the role
      * @return int
      */
     public int getRank() {
@@ -62,19 +62,23 @@ public class Role {
     }
     
     /**
-     * 
+     * To get the role name
      * @return String
      */
     public String getRoleName() {
       return roleName;
     }
 
+    /**
+     * To get the position on the board of the role 
+     * @return Rectangle
+     */
     public Rectangle getPosition() {
         return position;
     }
     
     /**
-     * 
+     * To format the string to printout the information of the role
      * @return String
      */
     public String toString() {

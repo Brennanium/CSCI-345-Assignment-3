@@ -190,7 +190,9 @@ public class Set extends Area{
         //remove everyone's roles
         occupants.forEach(p -> {
             p.setRole(null);
-            p.resetPracticeChips();
+            
+            //remove for testing purposes to speed up game
+            //p.resetPracticeChips();
         });
         
         //kill the scene

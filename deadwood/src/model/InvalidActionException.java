@@ -14,7 +14,7 @@ public class InvalidActionException extends Exception{
     }
 
     /**
-     * 
+     * To get the reason of the error
      * @return String
      */
     public String getReason(){

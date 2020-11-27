@@ -17,6 +17,7 @@ public class EndSceneEvent extends Event {
         Set currentArea,
         SceneCard scene)
         {
+        super("Scene has wrapped");
         this.players = players;
         this.moneyForPlayer = moneyForPlayer;
         this.currentArea = currentArea;

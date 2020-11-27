@@ -119,7 +119,7 @@ public class ActionManager {
     }
 
     /**
-     * 
+     * To set the player to act on the role that they have
      * @return ActEvent
      * @throws InvalidActionException
      */
@@ -176,7 +176,7 @@ public class ActionManager {
 
 
     /**
-     * 
+     * To set the player to rehearse on the role that they have
      * @return boolean
      * @throws InvalidActionException
      */
@@ -214,7 +214,7 @@ public class ActionManager {
 
 
     /**
-     * 
+     * To upgrade the player to the new rank that they desired
      * @param desiredRank
      * @return UpgradeEvent
      * @throws InvalidActionException
@@ -250,7 +250,7 @@ public class ActionManager {
     }
     
     /**
-     * 
+     * To end all the events of the game
      * @return ArrayList<Event>
      */
     public ArrayList<Event> end() {
@@ -270,7 +270,7 @@ public class ActionManager {
     }
 
     /**
-     * 
+     * To roll the player dice
      * @return int
      */
     private int rollDie() {
@@ -280,7 +280,7 @@ public class ActionManager {
     }
 
     /**
-     * 
+     * To get the current player game
      * @return Player
      */
 	public Player getCurrentPlayer() {
@@ -288,7 +288,7 @@ public class ActionManager {
     }
     
     /**
-     * 
+     * To get the current area
      * @return Area
      */
     public Area getCurrentArea(){
@@ -296,7 +296,7 @@ public class ActionManager {
     }
 
     /**
-     * 
+     * To get the areas
      * @return ArrayList<Area>
      */
     public ArrayList<Area> getAreas(){
@@ -304,7 +304,7 @@ public class ActionManager {
     }
 
     /**
-     * 
+     * To get the player roles
      * @return ArrayList<Role>
      * @throws InvalidActionException
      */
@@ -321,7 +321,7 @@ public class ActionManager {
 	}
 
     /**
-     * 
+     * To get the player rank for the upgrade
      * @return ArrayList<String>
      * @throws InvalidActionException
      */
@@ -337,7 +337,7 @@ public class ActionManager {
 	}
     
     /**
-     * 
+     * To get the scene of the current player if they have one
      * @return String
      * @throws InvalidActionException
      */
@@ -353,7 +353,7 @@ public class ActionManager {
 	}
 
     /**
-     * 
+     * To get all the player game
      * @return ArrayList<Player>
      */
 	public ArrayList<Player> getPlayers() {
@@ -361,7 +361,7 @@ public class ActionManager {
 	}
 
     /**
-     * 
+     * To get the current role of the current player
      * @return Role
      * @throws InvalidActionException 
      */
@@ -375,7 +375,7 @@ public class ActionManager {
     }
     
     /**
-     * 
+     * To get the neighbors of the current area
      * @return ArrayList<Area>
      */
     public ArrayList<Area> getCurrentNeighbors(){
@@ -384,13 +384,17 @@ public class ActionManager {
 
     
     /**
-     * 
+     * To get the current game
      * @return Game
      */
     public Game getCurrentGame(){
         return game;
     }
 
+    /**
+     * getInstance
+     * @return ActionManager
+     */
     public static ActionManager getInstance() {
         return instance;
     }

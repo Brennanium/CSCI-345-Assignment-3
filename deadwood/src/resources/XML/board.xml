@@ -7,6 +7,16 @@
       <neighbor name="office" />
     </neighbors>
     <area x="21" y="69" h="115" w="205" />
+    <points>
+      <point x="7" y="7" />
+      <point x="250" y="7" />
+      <point x="250" y="157" />
+      <point x="240" y="212" />
+      <point x="202" y="246" />
+      <point x="189" y="252" />
+      <point x="190" y="440" />
+      <point x="7" y="440" />
+    </points>
     <takes>
       <take number="3"><area x="36" y="11" h="47" w="47" /></take>
       <take number="2"><area x="89" y="11" h="47" w="47" /></take>
@@ -38,6 +48,15 @@
       <neighbor name="office" />
     </neighbors>
     <area x="27" y="732" h="115" w="205" />
+    <points>
+      <point x="7" y="680" />
+      <point x="185" y="680" />
+      <point x="285" y="740" />
+      <point x="410" y="700" />
+      <point x="595" y="700" />
+      <point x="595" y="895" />
+      <point x="7" y="895" />
+    </points>
     <takes>
       <take number="3"><area x="244" y="764" h="47" w="47" /></take>
       <take number="2"><area x="299" y="764" h="47" w="47" /></take>
@@ -69,6 +88,12 @@
       <neighbor name="Hotel" />
     </neighbors>
     <area x="623" y="734" h="115" w="205" />
+    <points>
+      <point x="605" y="655" />
+      <point x="920" y="665" />
+      <point x="935" y="895" />
+      <point x="605" y="895" />
+    </points>
     <takes>
       <take number="2"><area x="623" y="675" h="47" w="47" /></take>
       <take number="1"><area x="682" y="675" h="47" w="47" /></take>
@@ -91,6 +116,14 @@
       <neighbor name="Church" />
     </neighbors>
     <area x="969" y="740" h="115" w="205" />
+    <points>
+      <point x="1000" y="450" />
+      <point x="1195" y="450" />
+      <point x="1195" y="895" />
+      <point x="940" y="895" />
+      <point x="940" y="685" />
+      <point x="1000" y="640" />
+    </points>
     <takes>
       <take number="3"><area x="1005" y="683" h="47" w="47" /></take>
       <take number="2"><area x="1058" y="683" h="47" w="47" /></take>
@@ -122,6 +155,14 @@
       <neighbor name="Saloon" />
     </neighbors>
     <area x="969" y="28" h="115" w="205" />
+    <points>
+      <point x="605" y="5" />
+      <point x="1195" y="5" />
+      <point x="1195" y="240" />
+      <point x="1145" y="240" />
+      <point x="790" y="195" />
+      <point x="605" y="195" />
+    </points>
     <takes>
       <take number="3"><area x="912" y="23" h="47" w="47" /></take>
       <take number="2"><area x="858" y="23" h="47" w="47" /></take>
@@ -153,6 +194,13 @@
       <neighbor name="Train Station" />
     </neighbors>
     <area x="281" y="27" h="115" w="205" />
+    <points>
+      <point x="255" y="5" />
+      <point x="595" y="5" />
+      <point x="595" y="240" />
+      <point x="390" y="240" />
+      <point x="255" y="205" />
+    </points>
     <takes>
       <take number="1"><area x="442" y="156" h="47" w="47" /></take>
     </takes>
@@ -175,6 +223,12 @@
       <neighbor name="Saloon" />
     </neighbors>
     <area x="370" y="282" h="115" w="205" />
+    <points>
+      <point x="205" y="250" />
+      <point x="595" y="250" />
+      <point x="595" y="450" />
+      <point x="205" y="450" />
+    </points>
     <takes>
       <take number="2"><area x="313" y="277" h="47" w="47" /></take>
       <take number="1"><area x="313" y="330" h="47" w="47" /></take>
@@ -198,6 +252,12 @@
       <neighbor name="Bank" />
     </neighbors>
     <area x="252" y="478" h="115" w="205" />
+    <points>
+      <point x="225" y="450" />
+      <point x="225" y="685" />
+      <point x="595" y="680" />
+      <point x="595" y="450" />
+    </points>
     <takes>
       <take number="2"><area x="472" y="473" h="47" w="47" /></take>
       <take number="1"><area x="525" y="473" h="47" w="47" /></take>
@@ -225,6 +285,12 @@
       <neighbor name="Hotel" />
     </neighbors>
     <area x="623" y="475" h="115" w="205" />
+    <points>
+      <point x="605" y="450" />
+      <point x="605" y="655" />
+      <point x="990" y="655" />
+      <point x="990" y="450" />
+    </points>
     <takes>
       <take number="1"><area x="840" y="549" h="47" w="47" /></take>
     </takes>
@@ -247,6 +313,12 @@
       <neighbor name="trailer" />
     </neighbors>
     <area x="632" y="280" h="115" w="205" />
+    <points>
+      <point x="605" y="195" />
+      <point x="990" y="215" />
+      <point x="990" y="450" />
+      <point x="595" y="450" />
+    </points>
     <takes>
       <take number="2"><area x="626" y="216" h="47" w="47" /></take>
       <take number="1"><area x="679" y="216" h="47" w="47" /></take>
@@ -269,6 +341,12 @@
       <neighbor name="Hotel" />
     </neighbors>
     <area x="991" y="248" h="194" w="201" />
+    <points>
+      <point x="990" y="240" />
+      <point x="1195" y="240" />
+      <point x="1195" y="450" />
+      <point x="990" y="450" />
+    </points>
   </trailer>
   <office>
     <neighbors>
@@ -277,6 +355,12 @@
       <neighbor name="Secret Hideout" />
     </neighbors>
     <area x="9" y="459" h="208" w="209" />
+    <points>
+      <point x="5" y="450" />
+      <point x="225" y="450" />
+      <point x="225" y="660" />
+      <point x="5" y="660" />
+    </points>
     <upgrades>
       <upgrade level="2" currency="dollar" amt="4" >
         <area x="98" y="542" h="19" w="19" />

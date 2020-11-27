@@ -1,6 +1,7 @@
 
 import java.util.*;
 
+import javafx.application.Platform;
 import javafx.collections.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.*;
@@ -13,7 +14,7 @@ import javafx.stage.*;
 import model.*;
 import model.areas.*;
 import model.areas.Set;
-import model.events.UpgradeEvent;
+import model.events.*;
 
 
 public class mainGameController implements PlayerObserver {
@@ -67,19 +68,18 @@ public class mainGameController implements PlayerObserver {
     public void handleButtonAction(ActionEvent event) {
         try {
             if(event.getSource() == actButton) {
-                model.act();
+                ActEvent e = model.act();
+                showAlertForEvent(e.toString(), e.getTitle());
             } else if(event.getSource() == rehearseButton) {
                 model.rehearse();
+                String rehearseSuccess = "Congrats!  You earned one more practice chip.";
+                showAlertForEvent(rehearseSuccess, "Rehearse Success");
             } else if(event.getSource() == endTurnButton) {
-                model.end();
+                model.end()
+                    .forEach(e -> showAlertForEvent(e.toString(), e.getTitle()));
             }
         } catch(InvalidActionException e) {
-            Alert a = new Alert(AlertType.NONE, e.getReason(), ButtonType.OK);
-            a.setTitle("Invalid Action");
-            a.setHeaderText("Invalid Action");
-            a.show();
-
-            System.out.println("Invalid Action: " + e.getReason());
+            showAlertForException(e);
         }
     }
 
@@ -177,12 +177,8 @@ public class mainGameController implements PlayerObserver {
         try {
             model.move(areaName);
         } catch(InvalidActionException e) {
-            Alert a = new Alert(AlertType.NONE, e.getReason(), ButtonType.OK);
-            a.setTitle("Invalid Action");
-            a.setHeaderText("Invalid Action");
-            a.show();
 
-            System.out.println("Invalid Action: " + e.getReason());
+            showAlertForException(e);
         }
     } 
 
@@ -190,25 +186,68 @@ public class mainGameController implements PlayerObserver {
         try {
             model.takeRole(roleName);
         } catch(InvalidActionException e) {
-            Alert a = new Alert(AlertType.NONE, e.getReason(), ButtonType.OK); 
-            a.setTitle("Invalid Action");
-            a.setHeaderText("Invalid Action");
-            a.show();
-            
-            System.out.println("Invalid Action: " + e.getReason());
+            showAlertForException(e);
         }
     } 
 
     public void handleUpgradeAction(int rank){
         try {
-            model.upgrade(rank);
+            UpgradeEvent event = model.upgrade(rank);
+            showAlertForEvent(event.toString(), event.getTitle());
         } catch(InvalidActionException e) {
-            Alert a = new Alert(AlertType.NONE, e.getReason(), ButtonType.OK);
-            a.setTitle("Invalid Action");
-            a.setHeaderText("Invalid Action");
-            a.show();
-
-            System.out.println("Invalid Action: " + e.getReason());
+            showAlertForException(e);
         }
     } 
+
+    private void showAlertForException(InvalidActionException e) {
+        Alert a = new Alert(AlertType.NONE, e.getReason(), ButtonType.OK);
+        a.setTitle("Invalid Action");
+        a.setHeaderText("Invalid Action");
+
+        Window window = endTurnButton.getScene().getWindow();
+        double windowCenterX = window.getX() + (window.getWidth() / 2);
+        double windowCenterY = window.getY() + (window.getHeight() / 2);
+
+        // set a temp position
+        a.setX(windowCenterX);
+        a.setY(windowCenterY);
+
+        // Since the alert doesn't have a width or height till it's shown, calculate its position after it's shown
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                a.setX(windowCenterX - (a.getWidth() / 2));
+                a.setY(windowCenterY - (a.getHeight() / 2));
+            }
+        });
+
+        a.show();
+        System.out.println("Invalid Action: " + e.getReason());
+    }
+
+    private void showAlertForEvent(String eventString, String title) {
+        Alert a = new Alert(AlertType.NONE, eventString, ButtonType.OK);
+        a.setTitle(title);
+        a.setHeaderText(title);
+
+        Window window = endTurnButton.getScene().getWindow();
+        double windowCenterX = window.getX() + (window.getWidth() / 2);
+        double windowCenterY = window.getY() + (window.getHeight() / 2);
+
+        // set a temp position
+        a.setX(windowCenterX);
+        a.setY(windowCenterY);
+
+        // Since the alert doesn't have a width or height till it's shown, calculate its position after it's shown
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                a.setX(windowCenterX - (a.getWidth() / 2));
+                a.setY(windowCenterY - (a.getHeight() / 2));
+            }
+        });
+
+        a.show();
+        System.out.println(eventString);
+    }
 }

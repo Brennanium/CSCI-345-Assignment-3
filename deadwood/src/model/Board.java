@@ -31,7 +31,7 @@ public class Board {
     }
 
     /**
-     * 
+     * To get the area from the XML file
      */
     private void getAreasFromXML() {
         Document boardDoc = null;
@@ -49,7 +49,7 @@ public class Board {
     }
 
     /**
-     * 
+     * To get the scene from XML file
      */
     private void getScenesFromXML() {
         Document cardsDoc = null;
@@ -67,7 +67,7 @@ public class Board {
     }
     
     /**
-     * 
+     * To add the area into the Area class
      * @param newArea
      */
     public void addArea(Area newArea) {
@@ -77,7 +77,7 @@ public class Board {
     }
 
     /**
-     * 
+     * To deal the scene cards
      */
     public void dealSceneCards() {
         ArrayList<Set> sets = getSets();
@@ -93,7 +93,7 @@ public class Board {
     }
 
     /**
-     * 
+     * To get the name of the areas as string
      * @param areaString
      * @return Area
      */
@@ -105,7 +105,7 @@ public class Board {
     }
 
     /**
-     * 
+     * To get the number of remaining scenes
      * @return int
      */
     public int getNumberOfRemainingScenes() {
@@ -113,7 +113,7 @@ public class Board {
     }
     
     /**
-     * 
+     * To get all the areas
      * @return ArrayList<Area>
      */
     public ArrayList<Area> getAreas() {
@@ -121,7 +121,7 @@ public class Board {
     }
     
     /**
-     * 
+     * To get all the sets in the areas
      * @return ArrayList<Set>
      */
     private ArrayList<Set> getSets() {
@@ -136,7 +136,7 @@ public class Board {
     }
     
     /**
-     * 
+     * To get random scene cards
      * @return SceneCard
      */
     private SceneCard getRandomSceneCard() {
@@ -147,7 +147,7 @@ public class Board {
     }
     
     /**
-     * 
+     * To check whether the area is duplicate or not
      * @param area
      * @return boolean
      */
@@ -158,7 +158,7 @@ public class Board {
     }
 
     /**
-     * 
+     * To get the number of active scenes
      * @return int
      */
     public int getNumberOfActiveScenes(){

@@ -48,7 +48,7 @@ public class Game {
     }
 
     /**
-     * 
+     * To set the all the player to be ready for the game
      * @param players
      */
     public void setPlayers(ArrayList<Player> players) {
@@ -64,7 +64,7 @@ public class Game {
     }
 
     /**
-     * resets player turn booleans and sets the next player in turn order
+     * To resets player turn booleans and sets the next player in turn order
      */
     public void setNextPlayer() {
         if(currentPlayer == null) {
@@ -87,7 +87,7 @@ public class Game {
 
     /**
      * 
-     * 
+     * To check for the end scene
      * @return EndSceneEvent
      */
     public EndSceneEvent endSceneCheck() {
@@ -100,7 +100,7 @@ public class Game {
     }
 
     /**
-     * 
+     * To check for the end day
      * @return EndDayEvent
      */
     public EndDayEvent endDayCheck() {
@@ -113,7 +113,7 @@ public class Game {
     }
 
     /**
-     * 
+     * To wrap the day of the game
      * @return EndDyEvent
      */
     private EndDayEvent wrapDay() {
@@ -125,7 +125,7 @@ public class Game {
     }
 
     /**
-     * 
+     * To check for the end game
      * @return EndGameEvent
      */
     public EndGameEvent endGameCheck() {
@@ -137,7 +137,7 @@ public class Game {
     }
     
     /**
-     * 
+     * To wrap the game
      * @return EndGameEvent
      */
     private EndGameEvent wrapGame() {
@@ -146,7 +146,7 @@ public class Game {
     }
 
     /**
-     * returns every player to Trailer
+     *To return every player to Trailer
      */
     public void returnToTrailer(){
         players.stream()
@@ -160,7 +160,7 @@ public class Game {
     }
     
     /**
-     * 
+     * To get the area name as a string
      * @param areaString
      * @return Area
      */
@@ -169,7 +169,7 @@ public class Game {
     }
     
     /**
-     * 
+     * To get the current player
      * @return Player
      */
     public Player getCurrentPlayer() {
@@ -177,7 +177,7 @@ public class Game {
     }
     
     /**
-     * 
+     * To get the number of players in the game
      * @return int
      */
     public int getNumOfPlayers() {
@@ -185,7 +185,7 @@ public class Game {
     }
 
     /**
-     * 
+     * To get all the players info
      * @return ArrayList<Player>
      */
     public ArrayList<Player> getPlayers() {
@@ -193,67 +193,80 @@ public class Game {
     }
 
     /**
-     * 
+     * To get the area
      * @return ArrayList<Area>
      */
     public ArrayList<Area> getAreas() {
         return board.getAreas();
     }
 
-
     private boolean currentPlayerHasMoved;
+
     /**
-     * 
+     * To check whether the player has moved yet
      * @return boolean
      */
     public boolean getHasMoved(){ return currentPlayerHasMoved; }
+
     /**
-     * 
+     * To set the player has moved
      */
     public void hasMoved(){ currentPlayerHasMoved = true; }
+
     private boolean currentPlayerHasActed;
+
     /**
-     * 
+     * To check whether the player has acted yet
      * @return boolean
      */
     public boolean getHasActed(){ return currentPlayerHasActed; }
+
     /**
-     * 
+     * To set the player has acted
      */
     public void hasActed(){ currentPlayerHasActed = true; }
+
     private boolean currentPlayerHasRehearsed;
+
     /**
-     * 
+     * To checl whether the player has rehearsed yet
      * @return boolean
      */
     public boolean getHasRehearsed(){ return currentPlayerHasRehearsed; }
+
     /**
-     * 
+     * To set the player has rehearsed
      */
     public void hasRehearsed(){ currentPlayerHasRehearsed = true; }
+
     private boolean currentPlayerHasUpgraded;
+
     /**
-     * 
+     * To check whether the player has upgraded yet
      * @return boolean
      */
     public boolean getHasUpgraded(){ return currentPlayerHasUpgraded; }
+
     /**
-     * 
+     * To set the player has upgraded
      */
     public void hasUpgraded(){ currentPlayerHasUpgraded = true; }
+
     private boolean currentPlayerHasTakenRole;
+
     /**
-     * 
+     * To check whether the player has taken the role yet
      * @return boolean
      */
     public boolean getHasTakenRole(){ return currentPlayerHasTakenRole; }
+
     /**
-     * 
+     * To set the player has taken their role
      */
     public void hasTakenRole(){ currentPlayerHasTakenRole = true; }
 
     /**
-     * sets the proper starting rank, credits, and number of days
+     * To set the proper starting rank, credits, and number of days
      */
     public void initPlayers(){
         int startingRank;
@@ -302,26 +315,44 @@ public class Game {
         setNextPlayer();
     }
 
+    /**
+     * To add the observer to the player
+     * @param po
+     */
     public void addObserverToPlayers(PlayerObserver po) {
         addObserver(po);
         players.stream()
             .forEach(p -> p.addObserver(po));
     }
 
+    /**
+     * To update the observer
+     */
     private void updateObservers() {
         for(PlayerObserver po : observers) {
             po.update(currentPlayer);
         }
     }
 
+    /**
+     * To force the update on the observer
+     */
     public void forceUpdate() {
         updateObservers();
     }
 
+    /**
+     * To add the observer
+     * @param po
+     */
     public void addObserver(PlayerObserver po) {
         observers.add(po);
     }
 
+    /**
+     * To remove the observer
+     * @param po
+     */
     public void removeObserver(PlayerObserver po) {
         observers.remove(po);
     }

@@ -7,10 +7,18 @@ import model.*;
 public class EndGameEvent extends Event {
     private ArrayList<Player> players;
 
+    /**
+     * Constructor
+     * @param players
+     */
     public EndGameEvent(ArrayList<Player> players){
+        super("Game Over!");
         this.players = players;
     }
 
+    /**
+     * To sort the player based on their score
+     */
     private void sortPlayers(){
         Collections.sort(players, new Comparator<Player>(){
             public int compare(Player p1, Player p2){
@@ -19,6 +27,10 @@ public class EndGameEvent extends Event {
         });
     }
 
+    /**
+     * To format the string to printout the information of the score board
+     * @return String
+     */
     public String toString(){
         sortPlayers();
 

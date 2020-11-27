@@ -8,6 +8,7 @@ public class UpgradeEvent extends Event {
     private int newRank;
 
     public UpgradeEvent(Player affectedPlayer, int oldRank, int newRank){
+        super("Upgrade Success");
         this.affectedPlayer = affectedPlayer;
         this.oldRank = oldRank;
         this.newRank = newRank;

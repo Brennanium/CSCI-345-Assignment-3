@@ -111,6 +111,14 @@ public class Player{
     public int getPracticeChips() {
         return practiceChips;
     }
+
+    /**
+     * To get the dice image name
+     * @return String
+     */
+    public String getImageString() {
+        return color.substring(0, 1) + pRank + ".png";
+    }
     
     /**
      * To set player rank
@@ -243,7 +251,7 @@ public class Player{
     }
 
     /**
-     * To format the string to print printout the information of the player
+     * To format the string to printout the information of the player
      * @return String
      */
     public String toString() {
