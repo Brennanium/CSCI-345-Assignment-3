@@ -19,6 +19,7 @@
                   <Button fx:id="actButton" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="27.0" prefWidth="72.0" text="Act" />
                   <Button fx:id="rehearseButton" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="27.0" prefWidth="72.0" text="Rehearse" />
                   <SplitMenuButton fx:id="upgradeSplitMenuButton" mnemonicParsing="false" text="Upgrade" />
+                  <Button fx:id="leaderboardButton" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="27.0" prefWidth="92.0" text="Leaderboard" />
                   <Button fx:id="endTurnButton" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="27.0" prefWidth="72.0" text="End Turn" />
                </children>
                <padding>

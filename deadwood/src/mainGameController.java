@@ -1,4 +1,3 @@
-
 import java.util.*;
 
 import javafx.application.Platform;
@@ -32,6 +31,8 @@ public class mainGameController implements PlayerObserver {
     @FXML
     private SplitMenuButton upgradeSplitMenuButton;
     @FXML
+    private Button leaderboardButton;
+    @FXML
     private Button endTurnButton;
 
     private ActionManager model = ActionManager.getInstance();
@@ -59,13 +60,14 @@ public class mainGameController implements PlayerObserver {
         rehearseButton.setVisible(false);
         upgradeSplitMenuButton.managedProperty().bind(upgradeSplitMenuButton.visibleProperty());
         upgradeSplitMenuButton.setVisible(false);
+        leaderboardButton.managedProperty().bind(leaderboardButton.visibleProperty());
         endTurnButton.managedProperty().bind(endTurnButton.visibleProperty());
 
         model.getCurrentGame().addObserverToPlayers(this);
         model.getCurrentGame().forceUpdate();
     }
 
-    public void handleButtonAction(ActionEvent event) {
+    public void handleButtonAction(ActionEvent event) throws Exception {
         try {
             if(event.getSource() == actButton) {
                 ActEvent e = model.act();
@@ -74,6 +76,13 @@ public class mainGameController implements PlayerObserver {
                 model.rehearse();
                 String rehearseSuccess = "Congrats!  You earned one more practice chip.";
                 showAlertForEvent(rehearseSuccess, "Rehearse Success");
+            } else if(event.getSource() == leaderboardButton) {     
+                Parent root = FXMLLoader.load(getClass().getResource("leaderboardView.fxml"));;
+                Stage stage = new Stage();
+                Scene scene = new Scene(root, 400, 300);
+                stage.setTitle("Leaderboard");
+                stage.setScene(scene);
+                stage.show();
             } else if(event.getSource() == endTurnButton) {
                 model.end()
                     .forEach(e -> showAlertForEvent(e.toString(), e.getTitle()));
@@ -105,7 +114,6 @@ public class mainGameController implements PlayerObserver {
                     actButton.setVisible(false);
                 }
             }
-
             
             if(moveSplitMenuButton.isVisible()) {
                 updateMoveSplitMenuButton(player);
@@ -198,6 +206,10 @@ public class mainGameController implements PlayerObserver {
             showAlertForException(e);
         }
     } 
+
+    public void handleLeaderBoardAction(){
+        
+    }
 
     private void showAlertForException(InvalidActionException e) {
         Alert a = new Alert(AlertType.NONE, e.getReason(), ButtonType.OK);
