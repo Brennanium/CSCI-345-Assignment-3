@@ -1,10 +1,21 @@
 package model.areas;
 
+import javafx.scene.shape.Polygon;
+
 public class Trailers extends Area {
-    public Trailers() {
-        super("trailer");
+
+    /**
+     * Constructor
+     * @param polygon
+     */
+    public Trailers(Polygon polygon) {
+        super("trailer", polygon);
     }
 
+    /**
+     * To get the area summary
+     * @return String
+     */
     public String getAreaSummary() {
         StringBuffer sb = new StringBuffer("in Trailers\n");
 
@@ -13,6 +24,10 @@ public class Trailers extends Area {
         return sb.toString();
     }
 
+    /**
+     * To format the name of Trailers
+     * @return String
+     */
     public String toString() {
         return "Trailers";
     }

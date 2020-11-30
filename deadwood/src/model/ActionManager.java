@@ -304,6 +304,14 @@ public class ActionManager {
     }
 
     /**
+     * To get the areas
+     * @return ArrayList<Area>
+     */
+    public ArrayList<Set> getSets(){
+        return game.getSets();
+    }
+
+    /**
      * To get the player roles
      * @return ArrayList<Role>
      * @throws InvalidActionException

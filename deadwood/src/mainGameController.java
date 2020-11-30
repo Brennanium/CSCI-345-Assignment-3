@@ -15,7 +15,6 @@ import model.areas.*;
 import model.areas.Set;
 import model.events.*;
 
-
 public class mainGameController implements PlayerObserver {
 
     @FXML
@@ -49,7 +48,6 @@ public class mainGameController implements PlayerObserver {
         playerInfo = FXMLLoader.load(getClass().getClassLoader().getResource("currentPlayerInfoView.fxml"));
 
         mainBG.getChildren().addAll(playerInfo, board);
-
 
         moveSplitMenuButton.managedProperty().bind(moveSplitMenuButton.visibleProperty());
         workSplitMenuButton.managedProperty().bind(workSplitMenuButton.visibleProperty());
@@ -109,7 +107,9 @@ public class mainGameController implements PlayerObserver {
                     rehearseButton.setVisible(true);
                     actButton.setVisible(true);
                 } else {
-                    workSplitMenuButton.setVisible(true);
+                    if(((Set)player.getCurrentArea()).hasActiveScene()) {
+                        workSplitMenuButton.setVisible(true);
+                    }
                     rehearseButton.setVisible(false);
                     actButton.setVisible(false);
                 }
@@ -129,8 +129,6 @@ public class mainGameController implements PlayerObserver {
 
     private void updateMoveSplitMenuButton(Player player) {
         //loop through and add neighbors     
-
-        //moveSplitMenuButton.getItems().clear();
         moveMenuItems.clear();
         for(Area b : player.getCurrentArea().getNeighbors()) {
             MenuItem m = new MenuItem(b.getName());
@@ -141,10 +139,7 @@ public class mainGameController implements PlayerObserver {
         moveSplitMenuButton.getItems().addAll(moveMenuItems);
     }
 
-    private void updateWorkButton(Player player) {
-        //loop through and add neighbors     
-        
-        //moveSplitMenuButton.getItems().clear();
+    private void updateWorkButton(Player player) {    
         workMenuItems.clear();
 
         if(player.getCurrentArea() instanceof Set){
@@ -164,10 +159,8 @@ public class mainGameController implements PlayerObserver {
     }
 
     private void updateUpgradeButton(Player player) {
-        //loop through and add neighbors     
-        
-        //moveSplitMenuButton.getItems().clear();
         upgradeMenuItems.clear();
+
         if(player.getCurrentArea() instanceof CastingOffice){
             CastingOffice office = (CastingOffice)player.getCurrentArea();
 

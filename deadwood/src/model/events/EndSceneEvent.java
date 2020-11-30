@@ -11,6 +11,13 @@ public class EndSceneEvent extends Event {
     private Set currentArea;
     private SceneCard scene;
 
+    /**
+     * Constructor
+     * @param players
+     * @param moneyForPlayer
+     * @param currentArea
+     * @param scene
+     */
     public EndSceneEvent(
         ArrayList<Player> players, 
         HashMap<Player,Integer> moneyForPlayer, 
@@ -24,6 +31,9 @@ public class EndSceneEvent extends Event {
         this.scene = scene;
     }
 
+    /**
+     * To sort the player based on their rank
+     */
     private void sortPlayers(){
         Collections.sort(players, new Comparator<Player>(){
             public int compare(Player p1, Player p2){
@@ -32,6 +42,10 @@ public class EndSceneEvent extends Event {
         });
     }
 
+    /**
+     * To format the string to printout the information if the scene is wrapped 
+     * and also whether there are any bonuses
+     */
     public String toString(){
         sortPlayers();
 

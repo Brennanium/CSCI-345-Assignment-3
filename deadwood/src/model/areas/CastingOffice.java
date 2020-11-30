@@ -3,6 +3,7 @@ package model.areas;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javafx.scene.shape.Polygon;
 import model.*;
 
 
@@ -15,8 +16,8 @@ public class CastingOffice extends Area {
      * @param moneyForRank
      * @param creditsForRank
      */
-    public CastingOffice(HashMap<Integer, Integer> moneyForRank, HashMap<Integer, Integer> creditsForRank) {
-        super("office");
+    public CastingOffice(Polygon polygon, HashMap<Integer, Integer> moneyForRank, HashMap<Integer, Integer> creditsForRank) {
+        super("office",polygon);
         this.moneyForRank = moneyForRank;
         this.creditsForRank = creditsForRank;
     }

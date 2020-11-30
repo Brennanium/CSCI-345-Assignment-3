@@ -200,6 +200,14 @@ public class Game {
         return board.getAreas();
     }
 
+    /**
+     * To get all the sets in the areas
+     * @return ArrayList<Set>
+     */
+    public ArrayList<Set> getSets(){
+        return board.getSets();
+    }
+
     private boolean currentPlayerHasMoved;
 
     /**

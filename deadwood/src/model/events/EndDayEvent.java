@@ -18,7 +18,7 @@ public class EndDayEvent extends Event {
 
     /**
      * To format the string to printout the information of the game days
-     * 
+     * @return String
      */
     public String toString(){
         int day = maxDays - daysLeft;

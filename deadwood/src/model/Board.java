@@ -124,7 +124,7 @@ public class Board {
      * To get all the sets in the areas
      * @return ArrayList<Set>
      */
-    private ArrayList<Set> getSets() {
+    public ArrayList<Set> getSets() {
         if(areas == null) {
             getAreasFromXML();
         }

@@ -1,86 +1,215 @@
 
+import java.util.*;
+
 import javafx.fxml.*;
+import javafx.geometry.*;
+import javafx.scene.*;
 //import javafx.scene.control.*;
 import javafx.scene.image.*;
+import javafx.scene.paint.*;
+import javafx.scene.shape.*;
+import model.*;
+import model.areas.*;
+import model.areas.Set;
 
-public class boardViewController {
+public class boardViewController implements PlayerObserver {
 
     @FXML
     private ImageView boardImageView;
     @FXML
-    private ImageView currentPlayerDiceImage;
-    @FXML
-    private ImageView backCardTrainStation;
-    @FXML
-    private ImageView backCardJail;
-    @FXML
-    private ImageView backCardMainStreet;
-    @FXML
-    private ImageView backCardRanch;
-    @FXML
-    private ImageView backCardBank;
-    @FXML
-    private ImageView backCardGeneralStore;
-    @FXML
-    private ImageView backCardSaloon;
-   /*  @FXML
-    private ImageView backCardSecretHideout; */
-    @FXML
-    private ImageView backCardChurch;
-    @FXML
-    private ImageView backCardHotel;
-    @FXML
-    private ImageView sceneCardSecretHideout;
-    @FXML
-    private ImageView shot;
+    private Group group;
+    
+    private ArrayList<ImageView> sceneCardImageViewList = new ArrayList<ImageView>();
+    private HashMap<Set,ArrayList<ImageView>> shotTokenImageViewListForSet = new HashMap<Set,ArrayList<ImageView>>();
+    private HashMap<Player,ImageView> diceImageViewForPlayer = new HashMap<Player,ImageView>();
+
+    private ActionManager model = ActionManager.getInstance();
     
     public void initialize() {
-        
+        model.getCurrentGame().addObserverToPlayers(this);
+
         Image boardImage = new Image(getClass().getResourceAsStream("resources/board.jpg"));
         boardImageView.setImage(boardImage);
         boardImageView.minWidth(1200);
         boardImageView.minHeight(900);
 
-        Image diceImage = new Image(getClass().getResourceAsStream("resources/r2.png"));
-        currentPlayerDiceImage.setImage(diceImage);
-        /* currentPlayerDiceImage.setLayoutX(1500);
-        currentPlayerDiceImage.setLayoutY(1500); */
+        //for testing purposes only
+        //comment out
+        ArrayList<Area> areas = model.getAreas();
+        Polygon bounds;
+        for(Area a : areas) {
+            bounds = a.getPolygon();
+            bounds.setFill(Color.TRANSPARENT);
+            bounds.setStroke(Color.RED);
+            bounds.setStrokeWidth(5);
 
-        Image backCard1 = new Image(getClass().getResourceAsStream("resources/CardBack-small.png"));
-        backCardTrainStation.setImage(backCard1);
+            group.getChildren().add(bounds);
+        }
 
-        Image backCard2 = new Image(getClass().getResourceAsStream("resources/CardBack-small.png"));
-        backCardJail.setImage(backCard2);
+        initPlayerDice();
+        initShotTokens();
+        updateSceneCards();
+        
+    }
 
-        Image backCard3 = new Image(getClass().getResourceAsStream("resources/CardBack-small.png"));
-        backCardMainStreet.setImage(backCard3);
+    @Override
+    public void update(Player player) {
+        updateSceneCards();
+        updateShotTokens();
+        updatePlayerDice();
+    }
 
-        Image backCard4 = new Image(getClass().getResourceAsStream("resources/CardBack-small.png"));
-        backCardGeneralStore.setImage(backCard4);
 
-        Image backCard5 = new Image(getClass().getResourceAsStream("resources/CardBack-small.png"));
-        backCardSaloon.setImage(backCard5);
+    private void updatePlayerDice() {
+        ArrayList<Player> players = model.getPlayers();
+        Role role;
+        Set set;
+        Rectangle position;
+        ImageView diceImageView;
 
-        /* Image backCard6 = new Image(getClass().getResourceAsStream("resources/CardBack-small.png"));
-        backCardSecretHideout.setImage(backCard6); */
+        double onCardX;
+        double onCardY;
 
-        Image backCard7 = new Image(getClass().getResourceAsStream("resources/CardBack-small.png"));
-        backCardChurch.setImage(backCard7);
+        for(Player p : players) {
+            group.getChildren().remove(diceImageViewForPlayer.get(p));
 
-        Image backCard8 = new Image(getClass().getResourceAsStream("resources/CardBack-small.png"));
-        backCardHotel.setImage(backCard8);
+            role = p.getRole();
+            diceImageView = diceImageViewForPlayer.get(p);
+            if(p.getCurrentArea() instanceof Set) {
+                //if you're on a set and you have a role
+                if(role != null){
+                    set = (Set)p.getCurrentArea();
+                    position = role.getPosition();
 
-        Image backCard9 = new Image(getClass().getResourceAsStream("resources/CardBack-small.png"));
-        backCardRanch.setImage(backCard9);
+                    //if you are on card
+                    if(role.checkOnCard()) {
+                        onCardX = set.getSceneCardLocation().getX() + role.getPosition().getX();
+                        onCardY = set.getSceneCardLocation().getY() + role.getPosition().getY();
+                        diceImageView.setLayoutX(onCardX);
+                        diceImageView.setLayoutY(onCardY);
+                        diceImageView.toFront();
+                    } else { //if you are off card
+                        diceImageView.setLayoutX(position.getX());
+                        diceImageView.setLayoutY(position.getY());
+                    }
 
-        Image backCard10 = new Image(getClass().getResourceAsStream("resources/CardBack-small.png"));
-        backCardBank.setImage(backCard10);
+                    
+                } else { //if you're on a set but don't have a role
+                    position = getRandomValidDiceLocationForArea(p.getCurrentArea());
+                    diceImageView.setLayoutX(position.getX());
+                    diceImageView.setLayoutY(position.getY());
+                }
+            } else { //if you're not on a set
+                position = getRandomValidDiceLocationForArea(p.getCurrentArea());
+                diceImageView.setLayoutX(position.getX());
+                diceImageView.setLayoutY(position.getY());
+            }
 
-        Image sceneCard1 = new Image(getClass().getResourceAsStream("resources/01.png"));
-        sceneCardSecretHideout.setImage(sceneCard1);
+            diceImageView.minWidth(position.getWidth());
+            diceImageView.minHeight(position.getHeight());
 
-        Image shotToken = new Image(getClass().getResourceAsStream("resources/shot.png"));
-        shot.setImage(shotToken);
+            group.getChildren().add(diceImageView);
+        }
+    }
 
+    private void initPlayerDice() {
+        ArrayList<Player> players = model.getPlayers();
+        Image diceImage;
+        ImageView diceImageView;
+        for(Player p : players) {
+            diceImage = new Image(getClass().getResourceAsStream("resources/dice/" + p.getImageString()));
+            diceImageView = new ImageView(diceImage);
+
+            diceImageViewForPlayer.put(p,diceImageView);
+        }
+    }
+
+    private void updateSceneCards() {
+        group.getChildren().removeAll(sceneCardImageViewList);
+        sceneCardImageViewList.clear();
+
+        String sceneCardImageString;
+        Rectangle sceneCardBounds;
+        Image sceneCardImage;
+        ImageView sceneCardImageView;
+        for(Set s : model.getSets()){
+            sceneCardImageString = s.getSceneCardImageString();
+            sceneCardBounds = s.getSceneCardLocation();
+
+            if(sceneCardImageString == null) {
+                sceneCardImageString = "resources/CardBack-small.jpg";
+            } else {
+                sceneCardImageString = "resources/cards/" + sceneCardImageString;
+            }
+
+            sceneCardImage = new Image(getClass().getResourceAsStream(sceneCardImageString));
+            sceneCardImageView = new ImageView(sceneCardImage);
+            sceneCardImageView.setLayoutX(sceneCardBounds.getX());
+            sceneCardImageView.setLayoutY(sceneCardBounds.getY());
+            sceneCardImageView.minWidth(sceneCardBounds.getWidth());
+            sceneCardImageView.minHeight(sceneCardBounds.getHeight());
+            sceneCardImageViewList.add(sceneCardImageView);
+            group.getChildren().add(sceneCardImageView);
+        }
+    }
+
+    private void initShotTokens(){
+        Image shotTokenImage = new Image(getClass().getResourceAsStream("resources/shot.png"));
+        ArrayList<ImageView> shotTokens;
+        ImageView shotTokenImageView;
+        for(Set s : model.getSets()){
+            shotTokens = new ArrayList<ImageView>();
+            for(Rectangle r : s.getShotTokenLocations()) {
+                shotTokenImageView = new ImageView(shotTokenImage);
+                shotTokenImageView.setLayoutX(r.getX());
+                shotTokenImageView.setLayoutY(r.getY());
+                shotTokenImageView.minWidth(r.getWidth());
+                shotTokenImageView.minHeight(r.getHeight());
+                
+                shotTokens.add(shotTokenImageView);
+            }
+            shotTokenImageViewListForSet.put(s,shotTokens);
+            group.getChildren().addAll(shotTokens);
+        }
+    }
+    
+    private void updateShotTokens() {
+        ArrayList<ImageView> shotTokenImageViewList;
+
+        int shotTokensToHide;
+        for(Set s : model.getSets()){
+            shotTokensToHide = s.getMaxShotTokenCount() - s.getShotTokenCount();
+
+            shotTokenImageViewList = shotTokenImageViewListForSet.get(s);
+            for(int i = 0; i < shotTokensToHide; i++) {
+                shotTokenImageViewList.get(i).setVisible(false);
+            }
+        }
+    }
+
+    private void resetShotTokens() {
+        for(Set s : model.getSets()){
+            shotTokenImageViewListForSet.get(s).forEach(iv -> iv.setVisible(true));
+        }
+    }
+
+    private Rectangle getRandomValidDiceLocationForArea(Area area) {
+        //dice width 40x40
+        //polygon.getBounds()
+        //only exclude scene card if scene card is active
+        Polygon polygon = area.getPolygon();
+        Bounds bounds = polygon.getBoundsInParent();
+
+        //use to get random coordinate in area
+        bounds.getMinX();
+        bounds.getMaxX();
+        bounds.getMinY();
+        bounds.getMaxY();
+
+        if(area instanceof Set) {
+            Set set = (Set)area;
+        }
+
+        return null;
     }
 }

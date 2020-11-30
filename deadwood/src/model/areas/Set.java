@@ -5,35 +5,35 @@ import java.util.stream.*;
 
 import model.*;
 import model.events.*;
-
-import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.*;
 
 public class Set extends Area{
     private Role[] offCardRoles;
     private int maxShotTokenCount;
     private int shotTokenCount;
+    private Rectangle[] shotTokenLocations;
     private SceneCard scene;
     private Rectangle sceneCardLocation;
 
 
     /**
-     * 
+     * Constructor
      * @param name
      * @param maxShotTokenCount
      * @param roles
      */
-    public Set(String name, int maxShotTokenCount, Role[] roles, Rectangle sceneCardLocation, Rectangle[] shotTokenLocations) {
-        super(name);
+    public Set(String name, int maxShotTokenCount, Polygon polygon, Role[] roles, Rectangle sceneCardLocation, Rectangle[] shotTokenLocations) {
+        super(name, polygon);
         
         this.maxShotTokenCount = maxShotTokenCount;
         this.shotTokenCount = maxShotTokenCount;
         this.sceneCardLocation = sceneCardLocation;
+        this.shotTokenLocations = shotTokenLocations;
         offCardRoles = roles;
     }
 
-
     /**
-     * 
+     * To get the number of remianing shot tokens
      * @return int
      */
     public int getShotTokenCount() {
@@ -41,7 +41,15 @@ public class Set extends Area{
     }
 
     /**
-     * 
+     * To get the maximum number of shot tokens
+     * @return int
+     */
+    public int getMaxShotTokenCount() {
+        return maxShotTokenCount;
+    }
+
+    /**
+     * To get the off card roles
      * @return Role[]
      */
     public Role[] getOffCardRoles(){
@@ -49,14 +57,17 @@ public class Set extends Area{
     }
 
     /**
-     * 
+     * To remove the shot token
      */
     public void removeShotToken(){
         shotTokenCount--;
     }
 
+    public Rectangle[] getShotTokenLocations() {
+        return shotTokenLocations;
+    }
     /**
-     * 
+     * To get the budget of the scene
      * @return int
      */
     public int getBudget() {
@@ -64,7 +75,7 @@ public class Set extends Area{
     }
 
     /**
-     * 
+     * To set the scene card
      * @param scene
      */
     public void setSceneCard(SceneCard scene){
@@ -72,7 +83,7 @@ public class Set extends Area{
     }
    
     /**
-     * 
+     * To get the role name as a string
      * @param roleString
      * @return Role
      */
@@ -87,7 +98,7 @@ public class Set extends Area{
    }
 
     /**
-     * 
+     * To get all the roles that we have
      * @return ArrayList<Role>
      */
     public ArrayList<Role> getRoles() {
@@ -98,12 +109,28 @@ public class Set extends Area{
         return list;
     }
 
+    /**
+     * To get the scene card location
+     * @return Rectangle
+     */
     public Rectangle getSceneCardLocation(){
         return sceneCardLocation;
     }
 
     /**
-     * 
+     * To get the current scene card image string
+     * @return String
+     */
+    public String getSceneCardImageString(){
+        if(hasActiveScene()){
+            return scene.getImageString();
+        } else {
+            return null;   
+        }
+    }
+    
+    /**
+     * To check whether the role is free or not
      * @param role
      * @return boolean
      */
@@ -118,7 +145,7 @@ public class Set extends Area{
     }
 
     /**
-     * 
+     * To check whether the scene is active or not
      * @return boolean
      */
     public boolean hasActiveScene(){
@@ -126,7 +153,7 @@ public class Set extends Area{
     }
 
     /**
-     * 
+     * To check whether the scene is wrapped or not
      * @return EndSceneEvent
      */
     public EndSceneEvent checkWrapScene(){
@@ -138,7 +165,7 @@ public class Set extends Area{
     }
     
     /**
-     * 
+     * To wrap the scene
      * @return EndSceneEvent
      */
     private EndSceneEvent wrapScene(){
@@ -206,14 +233,14 @@ public class Set extends Area{
 
 
     /**
-     * 
+     * To reset the shot token
      */
     public void reset(){
         shotTokenCount = maxShotTokenCount;
     }
 
     /**
-     * 
+     * To get all the players that are working on card role
      * @return ArrayList<Player>
      */
     public ArrayList<Player> getPlayersWorkingOnCard() {
@@ -225,7 +252,7 @@ public class Set extends Area{
     }
     
     /**
-     * 
+     * To get all the players that are working on the off card role
      * @return ArrayList<Player>
      */
     public ArrayList<Player> getPlayersWorkingOffCard() {
@@ -237,7 +264,7 @@ public class Set extends Area{
     }
     
     /**
-     * 
+     * To get the area summary in a string format
      * @return String
      */
     public String getAreaSummary() {
@@ -255,7 +282,7 @@ public class Set extends Area{
     }
     
     /**
-     * 
+     * To get the roles information in a string format
      * @return String
      */
     public String getRolesInfo(){
@@ -279,7 +306,7 @@ public class Set extends Area{
     }
 
     /**
-     * 
+     * To get the scene information in a string format
      * @return
      */
     public String getSceneInfo(){ 
@@ -300,7 +327,7 @@ public class Set extends Area{
     }
 
     /**
-     * 
+     * To roll the die
      * @return int
      */
     private int rollDie() {

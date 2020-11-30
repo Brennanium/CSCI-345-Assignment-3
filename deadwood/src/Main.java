@@ -10,60 +10,12 @@ import model.Board;
 
 public class Main extends Application {
 
-    //private ImageView currentPlayerDiceImage;
-
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("startScreenView.fxml"));
         primaryStage.setTitle("Deadwood");
         primaryStage.setScene(new Scene(root, 1000, 700));
         primaryStage.show();
-
-        /* Parent root = FXMLLoader.load(getClass().getResource("boardView.fxml"));
-        primaryStage.setScene(new Scene(root, 1200, 900));
-        primaryStage.setMinWidth(1200);
-        primaryStage.setMinHeight(920);
-
-        Board testBoard = Board.getInstance();
-
-        primaryStage.show(); */
-
-        //Parent root1 = FXMLLoader.load(getClass().getResource("currentPlayerInfoView.fxml"));
-        //primaryStage.setScene(new Scene(r oot1, 1200, 900));
-        //primaryStage.show();
-        
-        /* Parent root = FXMLLoader.load(getClass().getResource("buttonListView.fxml"));
-        primaryStage.setScene(new Scene(root, 1200, 900));
-        primaryStage.setMinWidth(1200);
-        primaryStage.setMinHeight(920);
-        primaryStage.show(); */
-
-        /* Parent root = FXMLLoader.load(getClass().getResource("sceneCardView.fxml"));
-        primaryStage.setScene(new Scene(root, 1200, 900));
-        primaryStage.setMinWidth(1200);
-        primaryStage.setMinHeight(920);
-        primaryStage.show(); */
-
-        /* Parent root = FXMLLoader.load(getClass().getResource("playerDiceView.fxml"));
-        primaryStage.setScene(new Scene(root, 1200, 900));
-        primaryStage.setMinWidth(1200);
-        primaryStage.setMinHeight(920);
-        primaryStage.show(); */
-
-        /* Parent root = FXMLLoader.load(getClass().getResource("shotTokenView.fxml"));
-        primaryStage.setScene(new Scene(root, 45, 59));
-        primaryStage.setMinWidth(45);
-        primaryStage.setMinHeight(59);
-        primaryStage.show(); */
-
-       /*  Parent root = FXMLLoader.load(getClass().getResource("shotTokenView.fxml"));
-        primaryStage.setScene(new Scene(root, 45, 59));
-        primaryStage.setBackground(new Background(new BackgroundFill(Gauge.DARK_COLOR, CornerRadii.EMPTY)));
-
-        primaryStage.setMinWidth(45);
-        primaryStage.setMinHeight(59);
-        primaryStage.show(); */
-        
     }
 
 
