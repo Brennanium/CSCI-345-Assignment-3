@@ -61,8 +61,8 @@ public class mainGameController implements PlayerObserver {
         leaderboardButton.managedProperty().bind(leaderboardButton.visibleProperty());
         endTurnButton.managedProperty().bind(endTurnButton.visibleProperty());
 
-        model.getCurrentGame().addObserverToPlayers(this);
-        model.getCurrentGame().forceUpdate();
+        model.getCurrentGame().addCurrentPlayerObserver(this);
+        model.getCurrentGame().forcePlayerUpdate();
     }
 
     public void handleButtonAction(ActionEvent event) throws Exception {

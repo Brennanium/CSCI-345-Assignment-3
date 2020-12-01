@@ -8,7 +8,7 @@ import model.areas.Set;
 import model.events.*;
 
 
-public class Game {
+public class Game implements PlayerObserver {
     private ArrayList<Player> players;
     private ArrayList<Player> playersInTurnOrder;
     private Player currentPlayer;
@@ -16,7 +16,8 @@ public class Game {
     private int maxCountDay;
     private int countDay;
 
-    HashSet<PlayerObserver> observers = new HashSet<PlayerObserver>();
+    HashSet<PlayerObserver> playerObservers = new HashSet<PlayerObserver>();
+    HashSet<EventObserver> eventObservers = new HashSet<EventObserver>();
 
     /**
      * Constructor
@@ -82,7 +83,7 @@ public class Game {
         currentPlayerHasUpgraded = false;
         currentPlayerHasTakenRole = false;
 
-        updateObservers();
+        updatePlayerObservers();
     }
 
     /**
@@ -94,7 +95,11 @@ public class Game {
         if(currentPlayer.getCurrentArea() instanceof Set) {
             Set currentArea = (Set)currentPlayer.getCurrentArea();
 
-            return currentArea.checkWrapScene();
+            EndSceneEvent event = currentArea.checkWrapScene();
+            if(event != null) {
+                updateEventObservers(event);
+            }
+            return event;
         }
         return null;
     }
@@ -105,7 +110,11 @@ public class Game {
      */
     public EndDayEvent endDayCheck() {
         if(board.getNumberOfActiveScenes() < 2){
-            return wrapDay();
+            EndDayEvent event = wrapDay();
+            if(event != null) {
+                updateEventObservers(event);
+            }
+            return event;
         }
 
         return null;
@@ -130,7 +139,11 @@ public class Game {
      */
     public EndGameEvent endGameCheck() {
         if(countDay == 0) {
-            return wrapGame();
+            EndGameEvent event = wrapGame();
+            if(event != null) {
+                updateEventObservers(event);
+            }
+            return event;
         }
         
         return null;
@@ -324,44 +337,78 @@ public class Game {
     }
 
     /**
-     * To add the observer to the player
+     * To add observer to track changes in the current player
      * @param po
      */
-    public void addObserverToPlayers(PlayerObserver po) {
-        addObserver(po);
-        players.stream()
-            .forEach(p -> p.addObserver(po));
+    public void addCurrentPlayerObserver(PlayerObserver po) {
+        addPlayerObserver(po);
     }
-
     /**
-     * To update the observer
+     * To add the observer to all the players
+     * @param po
      */
-    private void updateObservers() {
-        for(PlayerObserver po : observers) {
+    public void addAllPlayersObserver(PlayerObserver po) {
+        addPlayerObserver(po);
+        players.forEach(p -> p.addObserver(po));
+    }
+    /**
+     * To update the observers
+     */
+    private void updatePlayerObservers() {
+        for(PlayerObserver po : playerObservers) {
             po.update(currentPlayer);
         }
     }
-
     /**
-     * To force the update on the observer
+     * To force the update on the observers
      */
-    public void forceUpdate() {
-        updateObservers();
+    public void forcePlayerUpdate() {
+        updatePlayerObservers();
     }
-
     /**
      * To add the observer
      * @param po
      */
-    public void addObserver(PlayerObserver po) {
-        observers.add(po);
+    public void addPlayerObserver(PlayerObserver po) {
+        playerObservers.add(po);
     }
-
     /**
      * To remove the observer
      * @param po
      */
-    public void removeObserver(PlayerObserver po) {
-        observers.remove(po);
+    public void removePlayerObserver(PlayerObserver po) {
+        playerObservers.remove(po);
+    }
+
+
+    /**
+     * To add observer to track changes in the current player
+     * @param eo
+     */
+    public void addEventObserver(EventObserver eo) {
+        eventObservers.add(eo);
+    }
+    /**
+     * To remove the observer
+     * @param eo
+     */
+    public void removeEventObserver(EventObserver eo) {
+        eventObservers.remove(eo);
+    }
+    /**
+     * To update the observer
+     */
+    private void updateEventObservers(Event event) {
+        for(EventObserver eo : eventObservers) {
+            eo.update(event);
+        }
+    }
+    
+
+    @Override
+    public void update(Player player) {
+        if(player == currentPlayer) {
+            updatePlayerObservers();
+        }
     }
 }

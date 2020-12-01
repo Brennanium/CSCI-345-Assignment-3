@@ -35,7 +35,7 @@ public class LeaderBoardViewController implements PlayerObserver {
             i++;
         }
         
-        model.getCurrentGame().addObserverToPlayers(this);
+        model.getCurrentGame().addAllPlayersObserver(this);
     }
 
     @Override

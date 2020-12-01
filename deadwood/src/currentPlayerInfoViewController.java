@@ -35,7 +35,7 @@ public class currentPlayerInfoViewController implements PlayerObserver {
         diceImage = new Image(getClass().getResourceAsStream("resources/dice/" + model.getCurrentPlayer().getImageString()));
         currentPlayerDiceImageView.setImage(diceImage);
 
-        model.getCurrentGame().addObserverToPlayers(this);
+        model.getCurrentGame().addCurrentPlayerObserver(this);
 
         currentPlayerCurrentRoleLabel.managedProperty().bind(currentPlayerCurrentRoleLabel.visibleProperty());
         currentPlayerCurrentRoleLabel.setVisible(false);
