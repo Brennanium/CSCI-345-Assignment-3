@@ -1,7 +1,5 @@
 package model;
 
-import java.util.ArrayList;
-
 import java.util.HashSet;
 
 import model.areas.*;
@@ -163,13 +161,32 @@ public class Player{
     }
     
     /**
-     *  To set player area
+     * To set player area
      * @param areaName
      */
     public void setArea(Area areaName){
-         this.currentArea = areaName;   
-         updateObservers(); 
+        this.currentArea = areaName;
+        hasMoved = true;
+        updateObservers(); 
     }
+
+    private boolean hasMoved;
+
+    /**
+     * To check whether the player has moved yet
+     * @return boolean
+     */
+    public boolean getHasMoved(){ return hasMoved; }
+
+    /**
+     * To set the player has moved
+     */
+    public void hasMoved(){ hasMoved = true; }
+    
+    /**
+     * To reset the move of the current player
+     */
+    public void resetHasMoved() { hasMoved = false; }
     
     /**
      * To pay the player money and credits

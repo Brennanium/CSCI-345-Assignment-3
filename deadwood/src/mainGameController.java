@@ -61,6 +61,8 @@ public class mainGameController implements PlayerObserver {
         leaderboardButton.managedProperty().bind(leaderboardButton.visibleProperty());
         endTurnButton.managedProperty().bind(endTurnButton.visibleProperty());
 
+        //setup keyboard shortcuts?
+
         model.getCurrentGame().addCurrentPlayerObserver(this);
         model.getCurrentGame().forcePlayerUpdate();
     }
@@ -84,6 +86,8 @@ public class mainGameController implements PlayerObserver {
             } else if(event.getSource() == endTurnButton) {
                 model.end()
                     .forEach(e -> showAlertForEvent(e.toString(), e.getTitle()));
+
+                //add stuff for ending the game and stuff
             }
         } catch(InvalidActionException e) {
             showAlertForException(e);
@@ -200,10 +204,6 @@ public class mainGameController implements PlayerObserver {
         }
     } 
 
-    public void handleLeaderBoardAction(){
-        
-    }
-
     private void showAlertForException(InvalidActionException e) {
         Alert a = new Alert(AlertType.NONE, e.getReason(), ButtonType.OK);
         a.setTitle("Invalid Action");
@@ -226,7 +226,7 @@ public class mainGameController implements PlayerObserver {
             }
         });
 
-        a.show();
+        a.showAndWait();
         System.out.println("Invalid Action: " + e.getReason());
     }
 
@@ -252,7 +252,7 @@ public class mainGameController implements PlayerObserver {
             }
         });
 
-        a.show();
+        a.showAndWait();
         System.out.println(eventString);
     }
 }

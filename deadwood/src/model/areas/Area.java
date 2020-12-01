@@ -2,11 +2,10 @@ package model.areas;
 
 import model.*;
 
-import java.util.ArrayList;
+import java.util.*;
 
-import javafx.geometry.Bounds;
-import javafx.scene.shape.Polygon;
-import javafx.scene.shape.Rectangle;
+import javafx.scene.image.*;
+import javafx.scene.shape.*;
 
 public abstract class Area {
     private String areaName;
@@ -67,42 +66,19 @@ public abstract class Area {
      * To checking whether the player coordinate is valid in the area or not
      * @return
      */
-    public boolean isValidPlayerCoodinate(Area area){
-        boolean valid = true;
-        Polygon polygon = area.getPolygon();
-        Bounds bounds = polygon.getBoundsInParent();
-        Rectangle dRec = new Rectangle();
-
-        //use to get random coordinate in area
-        double xMin = bounds.getMinX();
-        double xMax = (bounds.getMaxX()) - 40;
-        double yMin = bounds.getMinY();
-        double yMax = (bounds.getMaxY()) - 40;
-
-        double x = 0.0;
-        double y = 0.0;
-        double w = 40.0;
-        double h = 40.0;
-
-        if(area instanceof Set) {
-            Set set = (Set)area;
-            Rectangle r = set.getShotTokenLocations();
-            if(set.getSceneCardImageString() == null){ //scene card is not active
-                while(true){
-                    if(x != r.getX() && y != r.getY() && w != r.getWidth() && h != r.getHeight()){
-                        x = (double) (Math.random() * (xMax - xMin + 1) + xMin);
-                        y = (double) (Math.random() * (yMax - yMin + 1) + yMin);
-                        dRec.setX(x);
-                        dRec.setY(y);
-                        dRec.setWidth(w);
-                        dRec.setHeight(h);
-                    }
-                }
-                return valid;
-            }
+    public boolean isValidPlayerCoodinate(Rectangle testBounds, HashMap<Player, ImageView> imageViewForPlayer){
+        if (!bounds.contains(testBounds.getBoundsInLocal().getMinX(), testBounds.getBoundsInLocal().getMinY()) || 
+            !bounds.contains(testBounds.getBoundsInLocal().getMaxX(), testBounds.getBoundsInLocal().getMaxY())) {
+            return false;
         }
 
-        return false;
+        for(Player p : occupants) {
+            if(imageViewForPlayer.get(p).getBoundsInParent().intersects(testBounds.getBoundsInParent())){
+                return false;
+            }
+        }
+        
+        return true;
     }
 
     /**

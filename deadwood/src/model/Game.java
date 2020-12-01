@@ -45,6 +45,8 @@ public class Game implements PlayerObserver {
         board = Board.getInstance();
         board.dealSceneCards();
 
+        players.forEach(p -> p.addObserver(this));
+
         initPlayers();
     }
 
@@ -60,6 +62,8 @@ public class Game implements PlayerObserver {
             .collect(Collectors.toList());
         playersInTurnOrder = new ArrayList<Player>(playersCopy);
         Collections.shuffle(playersInTurnOrder);
+        
+        players.forEach(p -> p.addObserver(this));
         
         initPlayers();
     }
@@ -79,6 +83,7 @@ public class Game implements PlayerObserver {
 
         currentPlayerHasActed = false;
         currentPlayerHasMoved = false;
+        currentPlayer.resetHasMoved();
         currentPlayerHasRehearsed = false;
         currentPlayerHasUpgraded = false;
         currentPlayerHasTakenRole = false;
@@ -162,14 +167,17 @@ public class Game implements PlayerObserver {
      *To return every player to Trailer
      */
     public void returnToTrailer(){
-        players.stream()
-            .forEach(p -> {
-                p.setRole(null);
-                p.getCurrentArea().removePlayer(p);
-                Area trailers = getAreaForString("trailer");
-                trailers.addPlayer(p);
-                p.setArea(trailers);
-            });
+        Player p;
+        for(int i = 0; i < players.size(); i++){
+            p = players.get(i);
+            
+            p.setRole(null);
+            p.getCurrentArea().removePlayer(p);
+            Area trailers = getAreaForString("trailer");
+            trailers.addPlayer(p);
+            p.setArea(trailers);
+            p.resetHasMoved();
+        }
     }
     
     /**
@@ -227,12 +235,12 @@ public class Game implements PlayerObserver {
      * To check whether the player has moved yet
      * @return boolean
      */
-    public boolean getHasMoved(){ return currentPlayerHasMoved; }
+    public boolean getHasMoved(){ return currentPlayer.getHasMoved(); }
 
     /**
      * To set the player has moved
      */
-    public void hasMoved(){ currentPlayerHasMoved = true; }
+    public void hasMoved(){ currentPlayer.hasMoved(); }
 
     private boolean currentPlayerHasActed;
 
@@ -328,6 +336,7 @@ public class Game implements PlayerObserver {
                 Area trailers = getAreaForString("trailer");
                 trailers.addPlayer(p);
                 p.setArea(trailers);
+                p.resetHasMoved();
                 
                 p.setRank(startingRank);
                 p.pay(0, startingCredits);

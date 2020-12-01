@@ -5,6 +5,7 @@ import java.util.stream.*;
 
 import model.*;
 import model.events.*;
+import javafx.scene.image.*;
 import javafx.scene.shape.*;
 
 public class Set extends Area{
@@ -262,6 +263,41 @@ public class Set extends Area{
                     
         return new ArrayList<Player>(working);
     }
+
+     /**
+     * To checking whether the player coordinate is valid in the area or not
+     * @return boolean
+     */
+    
+    @Override
+    public boolean isValidPlayerCoodinate(Rectangle testBounds, HashMap<Player, ImageView> imageViewForPlayer){
+        if(!super.isValidPlayerCoodinate(testBounds, imageViewForPlayer)){
+            return false;
+        }
+        
+        if(scene.getIsActive()) {
+            if(sceneCardLocation.intersects(testBounds.getBoundsInLocal())){
+                return false;
+            }
+        }
+
+        for(Role r : offCardRoles) {
+            if(r.getPosition().intersects(testBounds.getBoundsInLocal())){
+                return false;
+            }
+        }
+
+        for(Rectangle r : shotTokenLocations) {
+            if(r.intersects(testBounds.getBoundsInLocal())){
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+
+
     
     /**
      * To get the area summary in a string format

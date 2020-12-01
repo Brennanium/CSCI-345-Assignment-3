@@ -28,6 +28,7 @@ public class boardViewController implements PlayerObserver, EventObserver {
 
     public void initialize() {
         model.getCurrentGame().addAllPlayersObserver(this);
+        model.getCurrentGame().addEventObserver(this);
 
         Image boardImage = new Image(getClass().getResourceAsStream("resources/board.jpg"));
         boardImageView.setImage(boardImage);
@@ -47,21 +48,28 @@ public class boardViewController implements PlayerObserver, EventObserver {
             group.getChildren().add(bounds);
         }
 
+        updateSceneCards();
         initPlayerDice();
         initShotTokens();
-        updateSceneCards();
 
     }
 
     @Override
     public void update(Player player) {
-        updateSceneCards();
+        //updateSceneCards();
         updateShotTokens();
-        updatePlayerDice();
+        if(player == model.getCurrentPlayer() && player.getHasMoved()) {
+            updatePlayerDie(player);
+        }
     }
 
     private void updatePlayerDice() {
-        ArrayList<Player> players = model.getPlayers();
+        for(Player p : model.getPlayers()) {
+            updatePlayerDie(p);
+        }
+    }
+
+    private void updatePlayerDie(Player p) {
         Role role;
         Set set;
         Rectangle position;
@@ -70,45 +78,42 @@ public class boardViewController implements PlayerObserver, EventObserver {
         double onCardX;
         double onCardY;
 
-        for (Player p : players) {
-            group.getChildren().remove(diceImageViewForPlayer.get(p));
+        role = p.getRole();
+        diceImageView = diceImageViewForPlayer.get(p);
+        if (p.getCurrentArea() instanceof Set) {
+            // if you're on a set and you have a role
+            if (role != null) {
+                set = (Set) p.getCurrentArea();
+                position = role.getPosition();
 
-            role = p.getRole();
-            diceImageView = diceImageViewForPlayer.get(p);
-            if (p.getCurrentArea() instanceof Set) {
-                // if you're on a set and you have a role
-                if (role != null) {
-                    set = (Set) p.getCurrentArea();
-                    position = role.getPosition();
-
-                    // if you are on card
-                    if (role.checkOnCard()) {
-                        onCardX = set.getSceneCardLocation().getX() + role.getPosition().getX();
-                        onCardY = set.getSceneCardLocation().getY() + role.getPosition().getY();
-                        diceImageView.setLayoutX(onCardX);
-                        diceImageView.setLayoutY(onCardY);
-                        diceImageView.toFront();
-                    } else { // if you are off card
-                        diceImageView.setLayoutX(position.getX());
-                        diceImageView.setLayoutY(position.getY());
-                    }
-
-                } else { // if you're on a set but don't have a role
-                    position = getRandomValidDiceLocationForArea(p.getCurrentArea());
+                // if you are on card
+                if (role.checkOnCard()) {
+                    onCardX = set.getSceneCardLocation().getX() + role.getPosition().getX();
+                    onCardY = set.getSceneCardLocation().getY() + role.getPosition().getY();
+                    diceImageView.setLayoutX(onCardX);
+                    diceImageView.setLayoutY(onCardY);
+                } else { // if you are off card
                     diceImageView.setLayoutX(position.getX());
                     diceImageView.setLayoutY(position.getY());
                 }
-            } else { // if you're not on a set
+
+            } else { // if you're on a set but don't have a role
                 position = getRandomValidDiceLocationForArea(p.getCurrentArea());
                 diceImageView.setLayoutX(position.getX());
                 diceImageView.setLayoutY(position.getY());
             }
-
-            diceImageView.minWidth(position.getWidth());
-            diceImageView.minHeight(position.getHeight());
-
-            group.getChildren().add(diceImageView);
+        } else { // if you're not on a set
+            position = getRandomValidDiceLocationForArea(p.getCurrentArea());
+            diceImageView.setLayoutX(position.getX());
+            diceImageView.setLayoutY(position.getY());
         }
+        Image diceImage = new Image(getClass().getResourceAsStream("resources/dice/" + p.getImageString()));
+        diceImageView.setImage(diceImage);
+        diceImageView.minWidth(position.getWidth());
+        diceImageView.minHeight(position.getHeight());
+        diceImageView.toFront();
+        //group.getChildren().add(diceImageView);
+        
     }
 
     private void initPlayerDice() {
@@ -120,7 +125,9 @@ public class boardViewController implements PlayerObserver, EventObserver {
             diceImageView = new ImageView(diceImage);
 
             diceImageViewForPlayer.put(p, diceImageView);
+            group.getChildren().add(diceImageView);
         }
+        updatePlayerDice();
     }
 
     private void updateSceneCards() {
@@ -149,6 +156,8 @@ public class boardViewController implements PlayerObserver, EventObserver {
             sceneCardImageView.minHeight(sceneCardBounds.getHeight());
             sceneCardImageViewList.add(sceneCardImageView);
             group.getChildren().add(sceneCardImageView);
+            sceneCardImageView.toBack();
+            boardImageView.toBack();
         }
     }
 
@@ -196,20 +205,12 @@ public class boardViewController implements PlayerObserver, EventObserver {
         // dice width 40x40
         // polygon.getBounds()
         // only exclude scene card if scene card is active
+
+        boolean isValid = false;
         Polygon polygon = area.getPolygon();
         Bounds bounds = polygon.getBoundsInParent();
-        Rectangle dRec = new Rectangle();
+        Rectangle testBounds = null;
 
-<<<<<<< HEAD
-        // use to get random coordinate in area
-        bounds.getMinX();
-        bounds.getMaxX();
-        bounds.getMinY();
-        bounds.getMaxY();
-
-        if (area instanceof Set) {
-            Set set = (Set) area;
-=======
         //use to get random coordinate in area
         double xMin = bounds.getMinX();
         double xMax = (bounds.getMaxX()) - 40;
@@ -221,31 +222,30 @@ public class boardViewController implements PlayerObserver, EventObserver {
         double w = 40.0;
         double h = 40.0;
 
-        if(area instanceof Set) {
-            Set set = (Set)area;
-            Rectangle r = set.getArea().getShotTokenLocations();
-            if(set.getSceneCardImageString() == null){ //scene card is not active
-                while(true){
-                    if(x != r.getX() && y != r.getY() && w != r.getWidth() && h != r.getHeight()){
-                        x = (double) (Math.random() * (xMax - xMin + 1) + xMin);
-                        y = (double) (Math.random() * (yMax - yMin + 1) + yMin);
-                        dRec.setX(x);
-                        dRec.setY(y);
-                        dRec.setWidth(w);
-                        dRec.setHeight(h);
-                    }
-                }
-            }
->>>>>>> 003539c6f221f1c5a2d0235fc766cadc73f5e8cc
+        while(!isValid) {
+            x = (double) (Math.random() * (xMax - xMin + 1) + xMin);
+            y = (double) (Math.random() * (yMax - yMin + 1) + yMin);
+
+            testBounds = new Rectangle(x,y,w,h);
+
+            isValid = area.isValidPlayerCoodinate(testBounds, diceImageViewForPlayer);
         }
-       
-        return dRec;
+
+        return testBounds;
     }
 
 
     public void update(Event event) {
+        if(event instanceof EndSceneEvent) {
+            updateSceneCards();
+            for(Player p : ((EndSceneEvent)event).getAffectedPlayers()){
+                updatePlayerDie(p);
+            }
+        }
         if(event instanceof EndDayEvent) {
             resetShotTokens();
+            updateSceneCards();
+            updatePlayerDice();
         }
         if(event instanceof EndGameEvent) {
             for(Player p : model.getPlayers()){

@@ -141,15 +141,15 @@ public class ActionManager {
                             game.hasActed();
                             game.hasRehearsed();
                             if(currentRole.checkOnCard() && succeeds){
-                                currentPlayer.pay(0, 2);
                                 currentArea.removeShotToken();
+                                currentPlayer.pay(0, 2);
                                 return new ActEvent(currentPlayer, true, 0, 2);
                             } else if(currentRole.checkOnCard() && !succeeds){
                                 currentPlayer.pay(0, 0);
                                 return new ActEvent(currentPlayer, false, 0, 0);
                             } else if(!currentRole.checkOnCard() && succeeds){
-                                currentPlayer.pay(1, 1);
                                 currentArea.removeShotToken();
+                                currentPlayer.pay(1, 1);
                                 return new ActEvent(currentPlayer, true, 1, 1);
                             } else if(!currentRole.checkOnCard() && !succeeds){
                                 currentPlayer.pay(1, 0);

@@ -31,6 +31,10 @@ public class EndSceneEvent extends Event {
         this.scene = scene;
     }
 
+    public ArrayList<Player> getAffectedPlayers() {
+        return players;
+    }
+
     /**
      * To sort the player based on their rank
      */
