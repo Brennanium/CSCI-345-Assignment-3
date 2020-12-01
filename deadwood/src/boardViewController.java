@@ -198,7 +198,9 @@ public class boardViewController implements PlayerObserver, EventObserver {
         // only exclude scene card if scene card is active
         Polygon polygon = area.getPolygon();
         Bounds bounds = polygon.getBoundsInParent();
+        Rectangle dRec = new Rectangle();
 
+<<<<<<< HEAD
         // use to get random coordinate in area
         bounds.getMinX();
         bounds.getMaxX();
@@ -207,9 +209,37 @@ public class boardViewController implements PlayerObserver, EventObserver {
 
         if (area instanceof Set) {
             Set set = (Set) area;
-        }
+=======
+        //use to get random coordinate in area
+        double xMin = bounds.getMinX();
+        double xMax = (bounds.getMaxX()) - 40;
+        double yMin = bounds.getMinY();
+        double yMax = (bounds.getMaxY()) - 40;
 
-        return null;
+        double x = 0.0;
+        double y = 0.0;
+        double w = 40.0;
+        double h = 40.0;
+
+        if(area instanceof Set) {
+            Set set = (Set)area;
+            Rectangle r = set.getArea().getShotTokenLocations();
+            if(set.getSceneCardImageString() == null){ //scene card is not active
+                while(true){
+                    if(x != r.getX() && y != r.getY() && w != r.getWidth() && h != r.getHeight()){
+                        x = (double) (Math.random() * (xMax - xMin + 1) + xMin);
+                        y = (double) (Math.random() * (yMax - yMin + 1) + yMin);
+                        dRec.setX(x);
+                        dRec.setY(y);
+                        dRec.setWidth(w);
+                        dRec.setHeight(h);
+                    }
+                }
+            }
+>>>>>>> 003539c6f221f1c5a2d0235fc766cadc73f5e8cc
+        }
+       
+        return dRec;
     }
 
 
