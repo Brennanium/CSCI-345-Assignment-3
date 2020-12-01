@@ -1,6 +1,7 @@
 import java.util.*;
 
 import javafx.application.Platform;
+import javafx.beans.value.*;
 import javafx.collections.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.*;
@@ -45,6 +46,28 @@ public class mainGameController implements PlayerObserver {
         Parent playerInfo;
         
         board = FXMLLoader.load(getClass().getClassLoader().getResource("boardView.fxml"));
+        /* Stage stage = (Stage) mainBG.getScene().getWindow();
+        ChangeListener<Number> stageSizeListener = (observable, oldValue, newValue) -> {
+            double minScale;
+            double heightScale = 900 / stage.getHeight();
+            double widthScale = 1200 / stage.getWidth();
+
+            if(heightScale >= 1 && widthScale >= 1 ) {
+                minScale = 1;
+            } else if(heightScale < widthScale) {
+                minScale = heightScale;
+            } else if(heightScale > widthScale) {
+                minScale = widthScale;
+            } else {
+                minScale = widthScale;
+            }
+
+            board.setScaleX(minScale);
+            board.setScaleY(minScale);
+        };
+
+        stage.widthProperty().addListener(stageSizeListener);
+        stage.heightProperty().addListener(stageSizeListener);  */
         playerInfo = FXMLLoader.load(getClass().getClassLoader().getResource("currentPlayerInfoView.fxml"));
 
         mainBG.getChildren().addAll(playerInfo, board);
