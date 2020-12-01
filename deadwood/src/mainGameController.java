@@ -8,6 +8,10 @@ import javafx.geometry.Insets;
 import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyCombination;
+import javafx.scene.input.Mnemonic;
 import javafx.scene.layout.*;
 import javafx.stage.*;
 import model.*;
@@ -61,8 +65,7 @@ public class mainGameController implements PlayerObserver {
         leaderboardButton.managedProperty().bind(leaderboardButton.visibleProperty());
         endTurnButton.managedProperty().bind(endTurnButton.visibleProperty());
 
-        //setup keyboard shortcuts?
-        
+        setUpKeyboardShortcut();
 
         model.getCurrentGame().addCurrentPlayerObserver(this);
         model.getCurrentGame().forcePlayerUpdate();
@@ -255,5 +258,31 @@ public class mainGameController implements PlayerObserver {
 
         a.showAndWait();
         System.out.println(eventString);
+    }
+
+    //setup keyboard shortcuts
+    private void setUpKeyboardShortcut(){
+        KeyCombination kcm = new KeyCodeCombination(KeyCode.M, KeyCombination.CONTROL_DOWN);
+        Mnemonic mnm = new Mnemonic(moveSplitMenuButton, kcm);
+        scene.addMnemonic(mnm);
+        KeyCombination kcw = new KeyCodeCombination(KeyCode.W, KeyCombination.CONTROL_DOWN);
+        Mnemonic mnw = new Mnemonic(workSplitMenuButton, kcw);
+        scene.addMnemonic(mnw);
+        KeyCombination kca = new KeyCodeCombination(KeyCode.A, KeyCombination.CONTROL_DOWN);
+        Mnemonic mna = new Mnemonic(actButton, kca);
+        scene.addMnemonic(mna);
+        KeyCombination kcr = new KeyCodeCombination(KeyCode.R, KeyCombination.CONTROL_DOWN);
+        Mnemonic mnr = new Mnemonic(rehearseButton, kcr);
+        scene.addMnemonic(mnr);
+        KeyCombination kcl = new KeyCodeCombination(KeyCode.L, KeyCombination.CONTROL_DOWN);
+        Mnemonic mnl = new Mnemonic(leaderboardButton, kcl);
+        scene.addMnemonic(mnl);
+        KeyCombination kcu = new KeyCodeCombination(KeyCode.U, KeyCombination.CONTROL_DOWN);
+        Mnemonic mnu = new Mnemonic(upgradeSplitMenuButton, kcl);
+        scene.addMnemonic(mnu);
+        KeyCombination kce = new KeyCodeCombination(KeyCode.E, KeyCombination.CONTROL_DOWN);
+        Mnemonic mne = new Mnemonic(endTurnButton, kce);
+        scene.addMnemonic(mne);
+
     }
 }
