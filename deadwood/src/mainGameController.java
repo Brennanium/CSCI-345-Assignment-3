@@ -62,6 +62,7 @@ public class mainGameController implements PlayerObserver {
         endTurnButton.managedProperty().bind(endTurnButton.visibleProperty());
 
         //setup keyboard shortcuts?
+        
 
         model.getCurrentGame().addCurrentPlayerObserver(this);
         model.getCurrentGame().forcePlayerUpdate();
