@@ -6,7 +6,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="currentPlayerDiceImagecurrentPlayerDiceImage" prefHeight="219.0" prefWidth="245.0" style="-fx-background-color: #F2BF92#F2BF92;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="currentPlayerInfoViewController">
+<VBox fx:id="currentPlayerDiceImagecurrentPlayerDiceImage" prefHeight="219.0" prefWidth="245.0" style="-fx-background-color: #F2BF92#F2BF92;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CurrentPlayerInfoViewController">
    <children>
       <ImageView fx:id="currentPlayerDiceImageView" fitHeight="89.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
          <image>

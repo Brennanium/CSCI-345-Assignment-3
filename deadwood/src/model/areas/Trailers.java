@@ -9,7 +9,7 @@ public class Trailers extends Area {
      * @param polygon
      */
     public Trailers(Polygon polygon) {
-        super("trailer", polygon);
+        super("Trailers", polygon);
     }
 
     /**

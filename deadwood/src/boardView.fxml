@@ -4,7 +4,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 
-<Group fx:id="group" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="boardViewController">
+<Group fx:id="group" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BoardViewController">
    <children>
       <ImageView fx:id="boardImageView" pickOnBounds="true" preserveRatio="true">
          <image>

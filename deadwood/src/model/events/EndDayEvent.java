@@ -17,6 +17,15 @@ public class EndDayEvent extends Event {
     }
 
     /**
+     * To get the day as a string
+     * @return String
+     */
+    public String getDayString() {
+        int day = maxDays - daysLeft;
+        return day == maxDays ? "The final day" : "Day " + day;
+    }
+
+    /**
      * To format the string to printout the information of the game days
      * @return String
      */

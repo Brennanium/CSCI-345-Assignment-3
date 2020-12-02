@@ -4,7 +4,7 @@
     <neighbors>
       <neighbor name="Jail" />
       <neighbor name="General Store" />
-      <neighbor name="office" />
+      <neighbor name="Casting Office" />
     </neighbors>
     <area x="21" y="69" h="115" w="205" />
     <points>
@@ -45,7 +45,7 @@
     <neighbors>
       <neighbor name="Church" />
       <neighbor name="Ranch" />
-      <neighbor name="office" />
+      <neighbor name="Casting Office" />
     </neighbors>
     <area x="27" y="732" h="115" w="205" />
     <points>
@@ -111,7 +111,7 @@
   </set>
   <set name="Hotel">
     <neighbors>
-      <neighbor name="trailer" />
+      <neighbor name="Trailers" />
       <neighbor name="Bank" />
       <neighbor name="Church" />
     </neighbors>
@@ -150,7 +150,7 @@
   </set>
   <set name="Main Street">
     <neighbors>
-      <neighbor name="trailer" />
+      <neighbor name="Trailers" />
       <neighbor name="Jail" />
       <neighbor name="Saloon" />
     </neighbors>
@@ -246,7 +246,7 @@
   </set>
   <set name="Ranch">
     <neighbors>
-      <neighbor name="office" />
+      <neighbor name="Casting Office" />
       <neighbor name="General Store" />
       <neighbor name="Secret Hideout" />
       <neighbor name="Bank" />
@@ -310,7 +310,7 @@
       <neighbor name="Main Street" />
       <neighbor name="General Store" />
       <neighbor name="Bank" />
-      <neighbor name="trailer" />
+      <neighbor name="Trailers" />
     </neighbors>
     <area x="632" y="280" h="115" w="205" />
     <points>

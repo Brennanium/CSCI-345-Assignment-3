@@ -16,7 +16,6 @@ public class Set extends Area{
     private SceneCard scene;
     private Rectangle sceneCardLocation;
 
-
     /**
      * Constructor
      * @param name
@@ -64,9 +63,14 @@ public class Set extends Area{
         shotTokenCount--;
     }
 
+    /**
+     * To get the shot token location
+     * @return Rectangle[]
+     */
     public Rectangle[] getShotTokenLocations() {
         return shotTokenLocations;
     }
+
     /**
      * To get the budget of the scene
      * @return int
@@ -220,7 +224,7 @@ public class Set extends Area{
             p.setRole(null);
             
             //remove for testing purposes to speed up game
-            //p.resetPracticeChips();
+            p.resetPracticeChips();
         });
         
         //kill the scene
@@ -231,7 +235,6 @@ public class Set extends Area{
 
         return new EndSceneEvent(offCard, bonusForPlayer, this, scene);
     }
-
 
     /**
      * To reset the shot token
@@ -268,7 +271,6 @@ public class Set extends Area{
      * To checking whether the player coordinate is valid in the area or not
      * @return boolean
      */
-    
     @Override
     public boolean isValidPlayerCoodinate(Rectangle testBounds, HashMap<Player, ImageView> imageViewForPlayer){
         if(!super.isValidPlayerCoodinate(testBounds, imageViewForPlayer)){
@@ -295,9 +297,6 @@ public class Set extends Area{
 
         return true;
     }
-
-
-
     
     /**
      * To get the area summary in a string format

@@ -10,12 +10,8 @@ import java.util.ArrayList;
 
 import org.w3c.dom.Document;
 
-
-//singleton class
 public class Board {
     private final String DEFAULT_XML_FILEPATH = "./src/resources/XML/"; 
-
-    private static Board instance = new Board();
     
     private ArrayList<Area> areas;
     private ArrayList<SceneCard> undealtSceneCards;
@@ -24,7 +20,7 @@ public class Board {
     /**
      * Constructor
      */
-    private Board() {
+    public Board() {
         getAreasFromXML();
         getScenesFromXML();
         dealtSceneCards = new ArrayList<SceneCard>();
@@ -174,14 +170,4 @@ public class Board {
     /* public String toString() {
         return "";
     } */
-
-    /**
-     * getInstance
-     * 
-     * Singleton method
-     * @return Board
-     */
-    public static Board getInstance() {
-        return instance;
-    }
 }

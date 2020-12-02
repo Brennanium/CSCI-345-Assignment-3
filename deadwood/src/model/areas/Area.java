@@ -41,6 +41,10 @@ public abstract class Area {
         return isSet;
     }
 
+    /**
+     * To get the polygon
+     * @return Polygon
+     */
     public Polygon getPolygon() {
         return bounds;
     }

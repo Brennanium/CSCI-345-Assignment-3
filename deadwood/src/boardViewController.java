@@ -13,7 +13,7 @@ import model.areas.*;
 import model.areas.Set;
 import model.events.*;
 
-public class boardViewController implements PlayerObserver, EventObserver {
+public class BoardViewController implements PlayerObserver, EventObserver {
 
     @FXML
     private ImageView boardImageView;
@@ -23,6 +23,9 @@ public class boardViewController implements PlayerObserver, EventObserver {
     private ArrayList<ImageView> sceneCardImageViewList = new ArrayList<ImageView>();
     private HashMap<Set, ArrayList<ImageView>> shotTokenImageViewListForSet = new HashMap<Set, ArrayList<ImageView>>();
     private HashMap<Player, ImageView> diceImageViewForPlayer = new HashMap<Player, ImageView>();
+    
+    private ArrayList<Polygon> debugAreaPolygonOutlines = new ArrayList<Polygon>();
+    private boolean debugAreasShowing = false;
 
     private ActionManager model = ActionManager.getInstance();
 
@@ -44,14 +47,25 @@ public class boardViewController implements PlayerObserver, EventObserver {
             bounds.setFill(Color.TRANSPARENT);
             bounds.setStroke(Color.RED);
             bounds.setStrokeWidth(5);
+            bounds.setVisible(false);
+
+            debugAreaPolygonOutlines.add(bounds);
 
             group.getChildren().add(bounds);
         }
+        debugAreasShowing = false;
 
         updateSceneCards();
         initPlayerDice();
         initShotTokens();
 
+    }
+
+    public void toggleDebugAreaOutlines() {
+        debugAreasShowing = !debugAreasShowing;
+        for(Polygon p : debugAreaPolygonOutlines) {
+            p.setVisible(debugAreasShowing);
+        }
     }
 
     @Override

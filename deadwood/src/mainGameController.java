@@ -1,43 +1,40 @@
-import java.util.*;
-
 import javafx.application.Platform;
-import javafx.beans.value.*;
 import javafx.collections.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.*;
-import javafx.geometry.Insets;
 import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyCodeCombination;
-import javafx.scene.input.KeyCombination;
-import javafx.scene.input.Mnemonic;
-import javafx.scene.layout.*;
 import javafx.stage.*;
 import model.*;
 import model.areas.*;
 import model.areas.Set;
 import model.events.*;
 
-public class mainGameController implements PlayerObserver {
+public class MainGameController implements PlayerObserver {
 
     @FXML
-    private HBox mainBG;
+    public Group mainBG;
     @FXML
-    private SplitMenuButton moveSplitMenuButton;
+    public SplitMenuButton moveSplitMenuButton;
     @FXML
-    private SplitMenuButton workSplitMenuButton;
+    public SplitMenuButton workSplitMenuButton;
     @FXML
-    private Button actButton;
+    public Button actButton;
     @FXML
-    private Button rehearseButton;
+    public Button rehearseButton;
     @FXML
-    private SplitMenuButton upgradeSplitMenuButton;
+    public SplitMenuButton upgradeSplitMenuButton;
     @FXML
-    private Button leaderboardButton;
+    public Button leaderboardButton;
     @FXML
-    private Button endTurnButton;
+    public Button endTurnButton;
+    @FXML
+    public Button quitButton;
+
+    public Node board;
+    public Group boardGroup;
+    public BoardViewController boardContoller;
 
     private ActionManager model = ActionManager.getInstance();
 
@@ -45,50 +42,40 @@ public class mainGameController implements PlayerObserver {
     private ObservableList<MenuItem> workMenuItems = FXCollections.observableArrayList();
     private ObservableList<MenuItem> upgradeMenuItems = FXCollections.observableArrayList();
 
+    public Stage leaderboardWindow;
+
     public void initialize() throws Exception {
-        Parent board;
         Parent playerInfo;
         
-        board = FXMLLoader.load(getClass().getClassLoader().getResource("boardView.fxml"));
-        /* Stage stage = (Stage) mainBG.getScene().getWindow();
-        ChangeListener<Number> stageSizeListener = (observable, oldValue, newValue) -> {
-            double minScale;
-            double heightScale = 900 / stage.getHeight();
-            double widthScale = 1200 / stage.getWidth();
+        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("boardView.fxml"));
+        board = loader.load();
+        boardContoller = loader.getController();
 
-            if(heightScale >= 1 && widthScale >= 1 ) {
-                minScale = 1;
-            } else if(heightScale < widthScale) {
-                minScale = heightScale;
-            } else if(heightScale > widthScale) {
-                minScale = widthScale;
-            } else {
-                minScale = widthScale;
-            }
-
-            board.setScaleX(minScale);
-            board.setScaleY(minScale);
-        };
-
-        stage.widthProperty().addListener(stageSizeListener);
-        stage.heightProperty().addListener(stageSizeListener);  */
+        boardGroup = new Group(board);
         playerInfo = FXMLLoader.load(getClass().getClassLoader().getResource("currentPlayerInfoView.fxml"));
 
-        mainBG.getChildren().addAll(playerInfo, board);
+        mainBG.getChildren().addAll(playerInfo, boardGroup);
+        boardGroup.setLayoutX(200);
+        boardGroup.setLayoutY(0);
+        playerInfo.setLayoutX(0);
+        playerInfo.setLayoutY(0);
 
         moveSplitMenuButton.managedProperty().bind(moveSplitMenuButton.visibleProperty());
+        moveSplitMenuButton.setOnAction((e) -> moveSplitMenuButton.show());
         workSplitMenuButton.managedProperty().bind(workSplitMenuButton.visibleProperty());
+        workSplitMenuButton.setOnAction((e) -> workSplitMenuButton.show());
         workSplitMenuButton.setVisible(false);
         actButton.managedProperty().bind(actButton.visibleProperty());
         actButton.setVisible(false);
         rehearseButton.managedProperty().bind(rehearseButton.visibleProperty());
         rehearseButton.setVisible(false);
         upgradeSplitMenuButton.managedProperty().bind(upgradeSplitMenuButton.visibleProperty());
+        upgradeSplitMenuButton.setOnAction((e) -> upgradeSplitMenuButton.show());
         upgradeSplitMenuButton.setVisible(false);
         leaderboardButton.managedProperty().bind(leaderboardButton.visibleProperty());
         endTurnButton.managedProperty().bind(endTurnButton.visibleProperty());
-
-        setUpKeyboardShortcut();
+        quitButton.managedProperty().bind(quitButton.visibleProperty());
+        quitButton.setVisible(false);
 
         model.getCurrentGame().addCurrentPlayerObserver(this);
         model.getCurrentGame().forcePlayerUpdate();
@@ -103,18 +90,17 @@ public class mainGameController implements PlayerObserver {
                 model.rehearse();
                 String rehearseSuccess = "Congrats!  You earned one more practice chip.";
                 showAlertForEvent(rehearseSuccess, "Rehearse Success");
-            } else if(event.getSource() == leaderboardButton) {     
-                Parent root = FXMLLoader.load(getClass().getResource("leaderboardView.fxml"));;
-                Stage stage = new Stage();
-                Scene scene = new Scene(root, 400, 300);
-                stage.setTitle("Leaderboard");
-                stage.setScene(scene);
-                stage.show();
+            } else if(event.getSource() == leaderboardButton) { 
+                handleLeaderboardButton();
             } else if(event.getSource() == endTurnButton) {
-                model.end()
-                    .forEach(e -> showAlertForEvent(e.toString(), e.getTitle()));
-
-                //add stuff for ending the game and stuff
+                handleEndTurnButton();
+            } else if(event.getSource() == quitButton) {
+                leaderboardWindow.close();
+                Stage stage = (Stage) quitButton.getScene().getWindow();
+                Parent root = FXMLLoader.load(getClass().getResource("startScreenView.fxml"));
+                stage.setTitle("Deadwood");
+                stage.setScene(new Scene(root, 1000, 700));
+                stage.show();
             }
         } catch(InvalidActionException e) {
             showAlertForException(e);
@@ -283,29 +269,43 @@ public class mainGameController implements PlayerObserver {
         System.out.println(eventString);
     }
 
-    //setup keyboard shortcuts
-    private void setUpKeyboardShortcut(){
-        KeyCombination kcm = new KeyCodeCombination(KeyCode.M, KeyCombination.CONTROL_DOWN);
-        Mnemonic mnm = new Mnemonic(moveSplitMenuButton, kcm);
-        scene.addMnemonic(mnm);
-        KeyCombination kcw = new KeyCodeCombination(KeyCode.W, KeyCombination.CONTROL_DOWN);
-        Mnemonic mnw = new Mnemonic(workSplitMenuButton, kcw);
-        scene.addMnemonic(mnw);
-        KeyCombination kca = new KeyCodeCombination(KeyCode.A, KeyCombination.CONTROL_DOWN);
-        Mnemonic mna = new Mnemonic(actButton, kca);
-        scene.addMnemonic(mna);
-        KeyCombination kcr = new KeyCodeCombination(KeyCode.R, KeyCombination.CONTROL_DOWN);
-        Mnemonic mnr = new Mnemonic(rehearseButton, kcr);
-        scene.addMnemonic(mnr);
-        KeyCombination kcl = new KeyCodeCombination(KeyCode.L, KeyCombination.CONTROL_DOWN);
-        Mnemonic mnl = new Mnemonic(leaderboardButton, kcl);
-        scene.addMnemonic(mnl);
-        KeyCombination kcu = new KeyCodeCombination(KeyCode.U, KeyCombination.CONTROL_DOWN);
-        Mnemonic mnu = new Mnemonic(upgradeSplitMenuButton, kcl);
-        scene.addMnemonic(mnu);
-        KeyCombination kce = new KeyCodeCombination(KeyCode.E, KeyCombination.CONTROL_DOWN);
-        Mnemonic mne = new Mnemonic(endTurnButton, kce);
-        scene.addMnemonic(mne);
+    private void handleLeaderboardButton() throws Exception {
+        if(leaderboardWindow == null) {
+            Parent root = FXMLLoader.load(getClass().getResource("leaderboardView.fxml"));;
+            leaderboardWindow = new Stage();
+            Scene scene = new Scene(root, 400, 300);
+            leaderboardWindow.setTitle("Leaderboard");
+            leaderboardWindow.setScene(scene);
+            leaderboardWindow.addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST, (e) -> {
+                leaderboardWindow.hide();
+                e.consume();
+            });
+            leaderboardWindow.show();
+        } else if(leaderboardWindow.isShowing()){
+            leaderboardWindow.hide();
+        } else {
+            leaderboardWindow.show();
+        }
+    }
 
+    private void handleEndTurnButton(){
+        for(Event e : model.end()){
+            showAlertForEvent(e.toString(), e.getTitle());
+            if(e instanceof EndDayEvent) {
+                Stage stage = (Stage) mainBG.getScene().getWindow();
+                stage.setTitle("Deadwood: " + model.getDayString());
+            } else if (e instanceof EndGameEvent) {
+                moveSplitMenuButton.setVisible(false);
+                workSplitMenuButton.setVisible(false);
+                upgradeSplitMenuButton.setVisible(false);
+                actButton.setVisible(false);
+                rehearseButton.setVisible(false);
+                endTurnButton.setVisible(false);
+                
+                quitButton.setVisible(true);
+                leaderboardButton.setVisible(true);
+            }
+            
+        }
     }
 }

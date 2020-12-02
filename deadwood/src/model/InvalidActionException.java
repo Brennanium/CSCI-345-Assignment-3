@@ -4,7 +4,6 @@ public class InvalidActionException extends Exception{
     private String reason;
 
     /**
-     * 
      * Constructor
      * @param message
      */

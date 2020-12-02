@@ -31,6 +31,10 @@ public class EndSceneEvent extends Event {
         this.scene = scene;
     }
 
+    /**
+     * To get all the affected players
+     * @return ArrayList<player>
+     */
     public ArrayList<Player> getAffectedPlayers() {
         return players;
     }

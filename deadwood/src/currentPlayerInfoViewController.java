@@ -5,7 +5,7 @@ import javafx.scene.image.*;
 import model.ActionManager;
 import model.*;
 
-public class currentPlayerInfoViewController implements PlayerObserver {
+public class CurrentPlayerInfoViewController implements PlayerObserver {
 
     @FXML
     private ImageView currentPlayerDiceImageView;
@@ -59,7 +59,7 @@ public class currentPlayerInfoViewController implements PlayerObserver {
             if(player.getRole() != null){
                 currentPlayerCurrentRoleLabel.setVisible(true);
                 currentPlayerCurrentRoleLabel.setText(
-                    String.format("Current Role: %s", player.getRole().getRoleName()));
+                    String.format("Role: %s", player.getRole().getRoleName()));
             }
             if(player.getPracticeChips() != 0){
                 currentPlayerPracticeChipsLabel.setVisible(true);
@@ -71,7 +71,7 @@ public class currentPlayerInfoViewController implements PlayerObserver {
                 currentPlayerSuccessfulScenesLabel.setText(
                     String.format("Successful Scenes: %d", player.getSuccessfulScenes()));
             }
-            currentPlayerCurrentAreaLabel.setText("Current Area: " + player.getCurrentArea());
+            currentPlayerCurrentAreaLabel.setText("Area: " + player.getCurrentArea());
             currentPlayerNameLabel.setText("Name: " + player.getName());
             currentPlayerMoneyLabel.setText("Money: " + player.getDollars());
             currentPlayerCreditsLabel.setText("Credits: " + player.getCredits());

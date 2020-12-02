@@ -17,7 +17,7 @@ public class CastingOffice extends Area {
      * @param creditsForRank
      */
     public CastingOffice(Polygon polygon, HashMap<Integer, Integer> moneyForRank, HashMap<Integer, Integer> creditsForRank) {
-        super("office",polygon);
+        super("Casting Office",polygon);
         this.moneyForRank = moneyForRank;
         this.creditsForRank = creditsForRank;
     }
@@ -67,7 +67,7 @@ public class CastingOffice extends Area {
      * @throws InvalidActionException
      */
     public ArrayList<Integer> affordablePlayerRanks(Player p){
-        int rank = p.getRank();
+        //int rank = p.getRank();
         ArrayList<Integer> affordableRanks = new ArrayList<Integer>();
 
         moneyForRank.forEach((k, v) -> {

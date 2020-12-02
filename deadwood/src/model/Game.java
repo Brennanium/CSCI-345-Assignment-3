@@ -7,7 +7,6 @@ import model.areas.*;
 import model.areas.Set;
 import model.events.*;
 
-
 public class Game implements PlayerObserver {
     private ArrayList<Player> players;
     private ArrayList<Player> playersInTurnOrder;
@@ -24,7 +23,7 @@ public class Game implements PlayerObserver {
      * 
      */
     public Game() {
-        board = Board.getInstance();
+        board = new Board();
         board.dealSceneCards();
     }
 
@@ -42,7 +41,7 @@ public class Game implements PlayerObserver {
         playersInTurnOrder = new ArrayList<Player>(playersCopy);
         Collections.shuffle(playersInTurnOrder);
 
-        board = Board.getInstance();
+        board = new Board();
         board.dealSceneCards();
 
         players.forEach(p -> p.addObserver(this));
@@ -139,6 +138,21 @@ public class Game implements PlayerObserver {
     }
 
     /**
+     * To get the day as string
+     * @return String
+     */
+    public String getDayString() {
+        int day = maxCountDay - countDay;
+        if((day + 1) == maxCountDay) {
+            return "Final Day";
+        } else if(day == maxCountDay) {
+            return "Game Over";
+        } else {
+            return "Day " + (day + 1);
+        }
+    }
+
+    /**
      * To check for the end game
      * @return EndGameEvent
      */
@@ -170,10 +184,10 @@ public class Game implements PlayerObserver {
         Player p;
         for(int i = 0; i < players.size(); i++){
             p = players.get(i);
-            
+
             p.setRole(null);
             p.getCurrentArea().removePlayer(p);
-            Area trailers = getAreaForString("trailer");
+            Area trailers = getAreaForString("Trailers");
             trailers.addPlayer(p);
             p.setArea(trailers);
             p.resetHasMoved();
@@ -333,7 +347,7 @@ public class Game implements PlayerObserver {
 
         players.stream()
             .forEach(p -> {
-                Area trailers = getAreaForString("trailer");
+                Area trailers = getAreaForString("Trailers");
                 trailers.addPlayer(p);
                 p.setArea(trailers);
                 p.resetHasMoved();
@@ -352,6 +366,7 @@ public class Game implements PlayerObserver {
     public void addCurrentPlayerObserver(PlayerObserver po) {
         addPlayerObserver(po);
     }
+
     /**
      * To add the observer to all the players
      * @param po
@@ -360,6 +375,7 @@ public class Game implements PlayerObserver {
         addPlayerObserver(po);
         players.forEach(p -> p.addObserver(po));
     }
+
     /**
      * To update the observers
      */
@@ -368,12 +384,14 @@ public class Game implements PlayerObserver {
             po.update(currentPlayer);
         }
     }
+
     /**
      * To force the update on the observers
      */
     public void forcePlayerUpdate() {
         updatePlayerObservers();
     }
+
     /**
      * To add the observer
      * @param po
@@ -381,6 +399,7 @@ public class Game implements PlayerObserver {
     public void addPlayerObserver(PlayerObserver po) {
         playerObservers.add(po);
     }
+
     /**
      * To remove the observer
      * @param po
@@ -389,7 +408,6 @@ public class Game implements PlayerObserver {
         playerObservers.remove(po);
     }
 
-
     /**
      * To add observer to track changes in the current player
      * @param eo
@@ -397,6 +415,7 @@ public class Game implements PlayerObserver {
     public void addEventObserver(EventObserver eo) {
         eventObservers.add(eo);
     }
+
     /**
      * To remove the observer
      * @param eo
@@ -404,6 +423,7 @@ public class Game implements PlayerObserver {
     public void removeEventObserver(EventObserver eo) {
         eventObservers.remove(eo);
     }
+
     /**
      * To update the observer
      */
@@ -412,8 +432,10 @@ public class Game implements PlayerObserver {
             eo.update(event);
         }
     }
-    
 
+    /**
+     * To update the player if it is a current player
+     */
     @Override
     public void update(Player player) {
         if(player == currentPlayer) {

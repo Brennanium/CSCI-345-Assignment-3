@@ -26,6 +26,13 @@ public class ActionManager {
         game = new Game(players);
         //game.setPlayers(players);
     }
+
+    /**
+     * To start a new game
+     */
+    public void getNewGame(){
+        game = new Game();
+    }
     
     /**
      * 
@@ -34,13 +41,6 @@ public class ActionManager {
      * @throws InvalidActionException
      */
     public Event move(String areaString) throws InvalidActionException {
-        if(areaString.equalsIgnoreCase("Casting Office")){
-            areaString = "office";
-        }
-        if(areaString.equalsIgnoreCase("Trailers")){
-            areaString = "trailer";
-        }
-
         Player currentPlayer = game.getCurrentPlayer();
         Area currentArea = currentPlayer.getCurrentArea();
 
@@ -174,7 +174,6 @@ public class ActionManager {
         }
     }
 
-
     /**
      * To set the player to rehearse on the role that they have
      * @return boolean
@@ -211,7 +210,6 @@ public class ActionManager {
             return true;
         }
     }
-
 
     /**
      * To upgrade the player to the new rank that they desired
@@ -390,6 +388,13 @@ public class ActionManager {
         return game.getCurrentPlayer().getCurrentArea().getNeighbors();
     }
 
+    /**
+     * 
+     * @return String
+     */
+    public String getDayString() {
+        return game.getDayString();
+    }
     
     /**
      * To get the current game
