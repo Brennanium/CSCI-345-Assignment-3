@@ -90,12 +90,13 @@ public class PlayerSelectScreenController {
                 }
             }
         }
-        Stage stage = (Stage) startGameButton.getScene().getWindow();
-        
-        double stackHeight = PACPVStack.getHeight();
+        if(selection != null) {
+            Stage stage = (Stage) startGameButton.getScene().getWindow();
+            
+            //double stackHeight = PACPVStack.getBoundsInParent().getHeight();
 
-        stage.setMinHeight(stackHeight + 100);
-        
+            stage.setHeight((selection * 50) + 250);
+        }
     }
 
 
