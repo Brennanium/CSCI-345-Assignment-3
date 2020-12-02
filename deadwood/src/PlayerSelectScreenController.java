@@ -121,7 +121,7 @@ public class PlayerSelectScreenController {
                 stage.setMinWidth(600 + 200);
                 stage.setTitle("Deadwood: " + ActionManager.getInstance().getDayString());
                 stage.addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST, (e) -> {
-                    controller.leaderboardWindow.close();
+                    if(controller.leaderboardWindow != null) controller.leaderboardWindow.close();
                     Platform.exit();
                 });
                 stage.show();
