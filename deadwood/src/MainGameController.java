@@ -44,6 +44,10 @@ public class MainGameController implements PlayerObserver {
 
     public Stage leaderboardWindow;
 
+    /**
+     * To initialize the board, current player information, as well as set up all the buttons for the game to be ready to start
+     * @throws Exception
+     */
     public void initialize() throws Exception {
         Parent playerInfo;
         
@@ -81,6 +85,11 @@ public class MainGameController implements PlayerObserver {
         model.getCurrentGame().forcePlayerUpdate();
     }
 
+    /**
+     * To handle the button action, as well as printing some strings on the alert
+     * @param event
+     * @throws Exception
+     */
     public void handleButtonAction(ActionEvent event) throws Exception {
         try {
             if(event.getSource() == actButton) {
@@ -107,6 +116,10 @@ public class MainGameController implements PlayerObserver {
         }
     }
 
+    /**
+     * To update all the buttons, so that the players will have only the valid button to choose the action
+     * @param player
+     */
     public void update(Player player) {
         if(player == model.getCurrentPlayer()){ 
             moveSplitMenuButton.setVisible(true);
@@ -144,6 +157,10 @@ public class MainGameController implements PlayerObserver {
         }
     }
 
+    /**
+     * To update the move split button by having only a valid area to move to
+     * @param player
+     */
     private void updateMoveSplitMenuButton(Player player) {
         //loop through and add neighbors     
         moveMenuItems.clear();
@@ -156,6 +173,10 @@ public class MainGameController implements PlayerObserver {
         moveSplitMenuButton.getItems().addAll(moveMenuItems);
     }
 
+    /**
+     * To update the work button by having only a valid roles for the player to choose
+     * @param player
+     */
     private void updateWorkButton(Player player) {    
         workMenuItems.clear();
 
@@ -175,6 +196,10 @@ public class MainGameController implements PlayerObserver {
         }
     }
 
+    /**
+     * To update the upgrade button, so the player will have only the valid rank to upgrade to
+     * @param player
+     */
     private void updateUpgradeButton(Player player) {
         upgradeMenuItems.clear();
 
@@ -191,6 +216,10 @@ public class MainGameController implements PlayerObserver {
         }
     }
 
+    /**
+     * To handle the move action whether the player already move to a certain area or not on their turn
+     * @param areaName
+     */
     public void handleMoveAction(String areaName){
         try {
             model.move(areaName);
@@ -200,6 +229,10 @@ public class MainGameController implements PlayerObserver {
         }
     } 
 
+    /**
+     * To handle work action whether the player already has the role to work on or not on their turn
+     * @param roleName
+     */
     public void handleWorkAction(String roleName){
         try {
             model.takeRole(roleName);
@@ -208,6 +241,10 @@ public class MainGameController implements PlayerObserver {
         }
     } 
 
+    /**
+     * To handle the upgrade action for the player
+     * @param rank
+     */
     public void handleUpgradeAction(int rank){
         try {
             UpgradeEvent event = model.upgrade(rank);
@@ -217,6 +254,10 @@ public class MainGameController implements PlayerObserver {
         }
     } 
 
+    /**
+     * To show the alert for the exception
+     * @param e
+     */
     private void showAlertForException(InvalidActionException e) {
         Alert a = new Alert(AlertType.NONE, e.getReason(), ButtonType.OK);
         a.setTitle("Invalid Action");
@@ -243,6 +284,11 @@ public class MainGameController implements PlayerObserver {
         System.out.println("Invalid Action: " + e.getReason());
     }
 
+    /**
+     * To show the alert for the events
+     * @param eventString
+     * @param title
+     */
     private void showAlertForEvent(String eventString, String title) {
         Alert a = new Alert(AlertType.NONE, eventString, ButtonType.OK);
         a.setTitle(title);
@@ -269,6 +315,10 @@ public class MainGameController implements PlayerObserver {
         System.out.println(eventString);
     }
 
+    /**
+     * To handle the leaderboard button
+     * @throws Exception
+     */
     private void handleLeaderboardButton() throws Exception {
         if(leaderboardWindow == null) {
             Parent root = FXMLLoader.load(getClass().getResource("leaderboardView.fxml"));;
@@ -288,6 +338,9 @@ public class MainGameController implements PlayerObserver {
         }
     }
 
+    /**
+     * To handle the end turn button
+     */
     private void handleEndTurnButton(){
         for(Event e : model.end()){
             showAlertForEvent(e.toString(), e.getTitle());

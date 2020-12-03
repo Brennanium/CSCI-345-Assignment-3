@@ -40,6 +40,9 @@ public class PlayerSelectScreenController {
     private ObservableList<String> colors = FXCollections.observableArrayList();
     private HashMap<String, String> colorToHex = new HashMap<String,String>();
 
+    /**
+     * To initialize the player select screen controller
+     */
     public void initialize(){
         listOfNums.addAll(2,3,4,5,6,7,8);
         setupColors();
@@ -48,7 +51,11 @@ public class PlayerSelectScreenController {
         numOfPlayersComboBox.setItems(listOfNums);
     }
     
-
+    /**
+     * To handle the combo box action which selection is of the player is valid or not
+     * @param event
+     * @throws Exception
+     */
     public void handleComboBoxAction(ActionEvent event) throws Exception {
         Integer selection = numOfPlayersComboBox.getSelectionModel().getSelectedItem();
         int numOfChoices = playerAndNumberPickerList.size();
@@ -99,7 +106,11 @@ public class PlayerSelectScreenController {
         }
     }
 
-
+    /**
+     * To handle the button action
+     * @param event
+     * @throws Exception
+     */
     public void handleButtonAction(ActionEvent event) throws Exception{
         Stage stage;
         FXMLLoader loader;
@@ -129,6 +140,10 @@ public class PlayerSelectScreenController {
         }
     }
 
+    /**
+     * To add the new player and color that the player chose into the box
+     * @param i
+     */
     private void addNewPlayerAndColorPickerView(int i){
         HBox container = new HBox();
         container.setPadding(new Insets(20, 0, 5, 0));
@@ -172,7 +187,6 @@ public class PlayerSelectScreenController {
         });
         textFieldList.add(textField);
 
-
         //setup color picker
         ComboBox<String> colorPicker = new ComboBox<String>();
         colorPicker.getItems().addAll(getAvailableColors());
@@ -203,6 +217,10 @@ public class PlayerSelectScreenController {
         PACPVStack.getChildren().add(container);
     }
 
+    /**
+     * To get all the available colors for the players to choose
+     * @return ArrayList<String>
+     */
     private ArrayList<String> getAvailableColors(){
         ArrayList<String> availableColors = new ArrayList<String>();
         availableColors.addAll(colors);
@@ -218,6 +236,9 @@ public class PlayerSelectScreenController {
         return availableColors;
     }
 
+    /**
+     * To set up all the colors
+     */
     private void setupColors(){
         colors.addAll("blue","cyan","green","orange","pink","red","violet","white","yellow");
 
@@ -232,6 +253,10 @@ public class PlayerSelectScreenController {
         colorToHex.put("yellow", "#FFFF00");
     }
 
+    /**
+     * To check whether the window is ready to proceed to the game or not
+     * @return boolean
+     */
     private boolean ready(){
         if(playerAndNumberPickerList.isEmpty())
             return false;
@@ -244,6 +269,10 @@ public class PlayerSelectScreenController {
             
     }
 
+    /**
+     * To check whether are there any empty text feild or not
+     * @return boolean
+     */
     private boolean existsEmptyTextField() {
         boolean hasEmpty = false;
         for(TextField tf : textFieldList) {
@@ -255,6 +284,10 @@ public class PlayerSelectScreenController {
         return hasEmpty;
     }
 
+    /**
+     * To check whether are there any duplicate player name or not
+     * @return boolean
+     */
     private boolean hasDuplicateName() {
         boolean hasDuplicate;
         
@@ -268,6 +301,10 @@ public class PlayerSelectScreenController {
         return false;
     }
 
+    /**
+     * To check whether are there any empty color box
+     * @return boolean
+     */
     private boolean existsEmptyColorPicker() {
         boolean hasEmpty = false;
         for(ComboBox<String> cb : colorPickerList) {
@@ -279,6 +316,10 @@ public class PlayerSelectScreenController {
         return hasEmpty;
     }
 
+    /**
+     * To get all the players in the game
+     * @return ArrayList<Player>
+     */
     private ArrayList<Player> getPlayers(){
         ArrayList<Player> players = new ArrayList<Player>();
         String name = "";
@@ -302,8 +343,11 @@ public class PlayerSelectScreenController {
         return players;
     }
 
-
-    //setup keyboard shortcuts
+    /**
+     * To setup keyboard shortcuts
+     * @param scene
+     * @param controller
+     */
     private void setUpKeyboardShortcut(Scene scene, MainGameController controller){
         KeyCombination kcm = new KeyCodeCombination(KeyCode.M, KeyCombination.SHORTCUT_DOWN);
         //Mnemonic mnm = new Mnemonic(controller.moveSplitMenuButton, kcm);
@@ -338,7 +382,11 @@ public class PlayerSelectScreenController {
         scene.getAccelerators().put(kcb, ()-> controller.boardContoller.toggleDebugAreaOutlines());
     }
 
-
+    /**
+     * To setup the board resizing
+     * @param stage
+     * @param controller
+     */
     private void setupBoardResizing(Stage stage, MainGameController controller) {
         ChangeListener<Number> stageSizeListener = (observable, oldValue, newValue) -> {
             final double playerInfoViewWidth = 200;

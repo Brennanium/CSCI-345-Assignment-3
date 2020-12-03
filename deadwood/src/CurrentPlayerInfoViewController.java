@@ -30,6 +30,9 @@ public class CurrentPlayerInfoViewController implements PlayerObserver {
 
     private ActionManager model = ActionManager.getInstance();
 
+    /**
+     * To initialize the current player information
+     */
     public void initialize() {
 
         diceImage = new Image(getClass().getResourceAsStream("resources/dice/" + model.getCurrentPlayer().getImageString()));
@@ -47,6 +50,10 @@ public class CurrentPlayerInfoViewController implements PlayerObserver {
         update(model.getCurrentPlayer());
     }
 
+    /**
+     * To update all the information about the current player
+     * @param player
+     */
     public void update(Player player) {
         if(player == model.getCurrentPlayer()){
             diceImage = new Image(getClass().getResourceAsStream("resources/dice/" + model.getCurrentPlayer().getImageString()));

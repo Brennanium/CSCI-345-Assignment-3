@@ -18,11 +18,19 @@ public class StartScreenViewController {
     @FXML
     private ImageView gameLogoImageView;
 
+    /**
+     * To initialize the start screen of the game
+     */
     public void initialize(){
         Image gameLogo = new Image(getClass().getResourceAsStream("/resources/Images From Rules/image--001.jpg"));
         gameLogoImageView.setImage(gameLogo);
     }
 
+    /**
+     * To handle the button action
+     * @param event
+     * @throws Exception
+     */
     public void handleButtonAction(ActionEvent event) throws Exception {
         Stage stage;
         FXMLLoader loader;
@@ -82,7 +90,11 @@ public class StartScreenViewController {
         }
     }
 
-    //setup keyboard shortcuts
+    /**
+     * To setup keyboard shortcuts
+     * @param scene
+     * @param controller
+     */
     private void setUpKeyboardShortcut(Scene scene, MainGameController controller){
         KeyCombination kcm = new KeyCodeCombination(KeyCode.M, KeyCombination.SHORTCUT_DOWN);
         //Mnemonic mnm = new Mnemonic(controller.moveSplitMenuButton, kcm);
@@ -117,7 +129,11 @@ public class StartScreenViewController {
         scene.getAccelerators().put(kcb, ()-> controller.boardContoller.toggleDebugAreaOutlines());
     }
 
-
+    /**
+     * To setup the board resizing
+     * @param stage
+     * @param controller
+     */
     private void setupBoardResizing(Stage stage, MainGameController controller) {
         ChangeListener<Number> stageSizeListener = (observable, oldValue, newValue) -> {
             final double playerInfoViewWidth = 200;
