@@ -29,6 +29,9 @@ public class BoardViewController implements PlayerObserver, EventObserver {
 
     private ActionManager model = ActionManager.getInstance();
 
+    /**
+     * To initialize the board for the game
+     */
     public void initialize() {
         model.getCurrentGame().addAllPlayersObserver(this);
         model.getCurrentGame().addEventObserver(this);
@@ -61,6 +64,9 @@ public class BoardViewController implements PlayerObserver, EventObserver {
 
     }
 
+    /**
+     * To toggle to debug area outlines
+     */
     public void toggleDebugAreaOutlines() {
         debugAreasShowing = !debugAreasShowing;
         for(Polygon p : debugAreaPolygonOutlines) {
@@ -68,6 +74,10 @@ public class BoardViewController implements PlayerObserver, EventObserver {
         }
     }
 
+    /**
+     * To update all the shot tokens, player dice, and scene card
+     * @param player
+     */
     @Override
     public void update(Player player) {
         //updateSceneCards();
@@ -77,12 +87,19 @@ public class BoardViewController implements PlayerObserver, EventObserver {
         }
     }
 
+    /**
+     * To update all the players dice
+     */
     private void updatePlayerDice() {
         for(Player p : model.getPlayers()) {
             updatePlayerDie(p);
         }
     }
 
+    /**
+     * To update the player dice to place on position
+     * @param p
+     */
     private void updatePlayerDie(Player p) {
         Role role;
         Set set;
@@ -130,6 +147,9 @@ public class BoardViewController implements PlayerObserver, EventObserver {
         
     }
 
+    /**
+     * To initialize the player dice
+     */
     private void initPlayerDice() {
         ArrayList<Player> players = model.getPlayers();
         Image diceImage;
@@ -144,6 +164,9 @@ public class BoardViewController implements PlayerObserver, EventObserver {
         updatePlayerDice();
     }
 
+    /**
+     * To update the scene cards
+     */
     private void updateSceneCards() {
         group.getChildren().removeAll(sceneCardImageViewList);
         sceneCardImageViewList.clear();
@@ -175,6 +198,9 @@ public class BoardViewController implements PlayerObserver, EventObserver {
         }
     }
 
+    /**
+     * To initialize the shot token to be placed
+     */
     private void initShotTokens() {
         Image shotTokenImage = new Image(getClass().getResourceAsStream("resources/shot.png"));
         ArrayList<ImageView> shotTokens;
@@ -195,6 +221,9 @@ public class BoardViewController implements PlayerObserver, EventObserver {
         }
     }
 
+    /**
+     * To update the shot tokens
+     */
     private void updateShotTokens() {
         ArrayList<ImageView> shotTokenImageViewList;
 
@@ -209,12 +238,20 @@ public class BoardViewController implements PlayerObserver, EventObserver {
         }
     }
 
+    /**
+     * To reset the shot tokens
+     */
     private void resetShotTokens() {
         for (Set s : model.getSets()) {
             shotTokenImageViewListForSet.get(s).forEach(iv -> iv.setVisible(true));
         }
     }
 
+    /**
+     * To get the valid random dice location for the area to place the players dice
+     * @param area
+     * @return Rectangle
+     */
     private Rectangle getRandomValidDiceLocationForArea(Area area) {
         // dice width 40x40
         // polygon.getBounds()
@@ -248,7 +285,10 @@ public class BoardViewController implements PlayerObserver, EventObserver {
         return testBounds;
     }
 
-
+    /**
+     * To update all the events that will occur
+     * @param event
+     */
     public void update(Event event) {
         if(event instanceof EndSceneEvent) {
             updateSceneCards();

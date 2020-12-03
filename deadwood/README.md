@@ -1,14 +1,19 @@
-## Getting Started
+# CSCI-345-Assignment-3
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+Link to the folder of google drive: https://drive.google.com/drive/folders/1gacDotmEeEp2aWL846xquLlUZyPZgpSg?usp=sharing
 
-## Folder Structure
+Link to the Deadwood Report: https://docs.google.com/presentation/d/17dgpa0FyxmhcwCy1Fb_hmiPj2EpoUPAOsZQXjh35fSc/edit?usp=sharing
 
-The workspace contains two folders by default, where:
+Link to the Presentation: https://docs.google.com/presentation/d/17dgpa0FyxmhcwCy1Fb_hmiPj2EpoUPAOsZQXjh35fSc/edit?usp=sharing
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+Link to the Video: https://drive.google.com/file/d/11Nik-jNKPwza8QjvA17E8Jrw27qGY6PP/view?usp=sharing
 
-## Dependency Management
-
-The `JAVA DEPENDENCIES` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-pack/blob/master/release-notes/v0.9.0.md#work-with-jar-files-directly).
+Here are some keyboard shortcuts that you can use while running the game:
+    
+    - move: CTRL/CMD + M
+    - work: CTRL/CMD + W
+    - act: CTRL/CMD + A
+    - rehearse: CTRL/CMD + R
+    - upgrade: CTRL/CMD + U
+    - leaderboard: CTRL/CMD + L
+    - end turn: CTRL/CMD + E

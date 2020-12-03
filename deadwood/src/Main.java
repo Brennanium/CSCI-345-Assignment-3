@@ -1,17 +1,14 @@
-
-//import java.util.*;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-//import javafx.scene.image.*;
-
-//import model.*;
 
 public class Main extends Application {
 
+    /**
+     * To start the stage of the game
+     */
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("startScreenView.fxml"));

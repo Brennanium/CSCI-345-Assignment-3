@@ -15,7 +15,10 @@ public class LeaderBoardViewController implements PlayerObserver {
 
     private ActionManager model = ActionManager.getInstance();
 
-    public void initialize() throws Exception {
+    /**
+     * To initialize the leaderboard for the players
+     */
+    public void initialize(){
         ArrayList<Player> players = model.getPlayers();
         Collections.sort(players, new Comparator<Player>(){
             public int compare(Player p1, Player p2){
@@ -38,6 +41,10 @@ public class LeaderBoardViewController implements PlayerObserver {
         model.getCurrentGame().addAllPlayersObserver(this);
     }
 
+    /**
+     * To update the leaderboard score of the players
+     * @param player
+     */
     @Override
     public void update(Player player) {
         playerScore.getChildren().clear();
