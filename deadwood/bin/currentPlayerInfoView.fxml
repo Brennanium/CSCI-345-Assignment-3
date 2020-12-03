@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox fx:id="currentPlayerDiceImagecurrentPlayerDiceImage" prefHeight="219.0" prefWidth="245.0" style="-fx-background-color: #F2BF92#F2BF92;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CurrentPlayerInfoViewController">
+   <children>
+      <ImageView fx:id="currentPlayerDiceImageView" fitHeight="89.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@resources/r2.png" />
+         </image>
+         <VBox.margin>
+            <Insets bottom="5.0" left="20.0" top="10.0" />
+         </VBox.margin>
+      </ImageView>
+      <Label fx:id="currentPlayerNameLabel" text="Name:">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets bottom="5.0" left="20.0" />
+         </padding>
+      </Label>
+      <Label fx:id="currentPlayerMoneyLabel" text="Money:">
+         <padding>
+            <Insets bottom="5.0" left="20.0" />
+         </padding>
+      </Label>
+      <Label fx:id="currentPlayerCreditsLabel" text="Credits:">
+         <padding>
+            <Insets bottom="5.0" left="20.0" />
+         </padding>
+      </Label>
+      <Label fx:id="currentPlayerSuccessfulScenesLabel" prefHeight="17.0" prefWidth="188.0" text="Successful Scenes:">
+         <padding>
+            <Insets bottom="5.0" left="20.0" />
+         </padding>
+      </Label>
+      <Label fx:id="currentPlayerRankLabel" text="Rank:">
+         <padding>
+            <Insets bottom="5.0" left="20.0" />
+         </padding>
+      </Label>
+      <Label fx:id="currentPlayerCurrentAreaLabel" text="Current Area:">
+         <padding>
+            <Insets bottom="5.0" left="20.0" />
+         </padding>
+      </Label>
+      <Label fx:id="currentPlayerCurrentRoleLabel" text="Current Role:">
+         <padding>
+            <Insets bottom="5.0" left="20.0" />
+         </padding>
+      </Label>
+      <Label fx:id="currentPlayerPracticeChipsLabel" text="Number of Practice Chips:">
+         <padding>
+            <Insets bottom="5.0" left="20.0" />
+         </padding>
+      </Label>
+   </children>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+</VBox>

@@ -1,0 +1,7 @@
+#!/bin/bash
+jarPath=$(dirname "$0")
+java \
+    --enable-preview \
+    -Dprism.verbose=true \
+    -Djava.library.path="$jarPath/lib/javafx-sdk-15.0.1/lib/" \
+    -jar "$jarPath"/deadwood.jar

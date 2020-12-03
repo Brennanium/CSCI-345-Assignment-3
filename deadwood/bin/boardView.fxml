@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Group?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+
+<Group fx:id="group" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BoardViewController">
+   <children>
+      <ImageView fx:id="boardImageView" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@resources/board.jpg" />
+         </image>
+      </ImageView>
+   </children>
+</Group>
