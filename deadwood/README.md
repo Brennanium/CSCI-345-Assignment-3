@@ -9,6 +9,7 @@ Link to the Presentation: https://docs.google.com/presentation/d/17dgpa0FyxmhcwC
 Link to the Video: https://drive.google.com/file/d/11Nik-jNKPwza8QjvA17E8Jrw27qGY6PP/view?usp=sharing
 
 Here are some keyboard shortcuts that you can use while running the game:
+    
     - move: CTRL/CMD + M
     - work: CTRL/CMD + W
     - act: CTRL/CMD + A
