@@ -117,8 +117,8 @@ public class PlayerSelectScreenController {
                 setUpKeyboardShortcut(scene, controller);
                 stage.setScene(scene);
                 setupBoardResizing(stage, controller);
-                stage.setMinHeight(450 + 80);
-                stage.setMinWidth(600 + 200);
+                stage.setMinHeight(900 + 80);
+                stage.setMinWidth(1200 + 200);
                 stage.setTitle("Deadwood: " + ActionManager.getInstance().getDayString());
                 stage.addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST, (e) -> {
                     if(controller.leaderboardWindow != null) controller.leaderboardWindow.close();
