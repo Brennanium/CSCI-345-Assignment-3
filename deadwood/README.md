@@ -10,16 +10,23 @@ Link to the Video: https://drive.google.com/file/d/11Nik-jNKPwza8QjvA17E8Jrw27qG
 
 Here are some keyboard shortcuts that you can use while running the game:
     - move: 
+        
         CTRL/CMD + M
     - work: 
+        
         CTRL/CMD + W
     - act: 
+        
         CTRL/CMD + A
     - rehearse: 
+        
         CTRL/CMD + R
     - upgrade: 
+        
         CTRL/CMD + U
     - leaderboard: 
+        
         CTRL/CMD + L
     - end turn: 
+        
         CTRL/CMD + E
