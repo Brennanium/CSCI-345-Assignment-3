@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+    <classpathentry kind="src" path="src"/>
+    <classpathentry kind="output" path="bin"/>
+    <classpathentry kind="lib" path="lib/javafx-sdk-15.0.1/lib/javafx.controls.jar"/>
+    <classpathentry kind="lib" path="lib/javafx-sdk-15.0.1/lib/javafx.fxml.jar"/>
+</classpath>

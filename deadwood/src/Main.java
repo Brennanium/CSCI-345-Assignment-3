@@ -10,12 +10,13 @@ public class Main extends Application {
      * To start the stage of the game
      */
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("startScreenView.fxml"));
         primaryStage.setTitle("Deadwood");
         primaryStage.setScene(new Scene(root, 1000, 700));
         primaryStage.show();
     }
+    
 
 
     public static void main(String[] args) {
