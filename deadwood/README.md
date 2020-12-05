@@ -8,6 +8,10 @@ Link to the Presentation: https://docs.google.com/presentation/d/17dgpa0FyxmhcwC
 
 Link to the Video: https://drive.google.com/file/d/11Nik-jNKPwza8QjvA17E8Jrw27qGY6PP/view?usp=sharing
 
+
+To run the program, you can either double-click Deadwood.app if you're on a Mac, or you can go to the `deadwood/` directory in terminal and type "`bash run.sh`"
+
+
 Here are some keyboard shortcuts that you can use while running the game:
     
     - move: CTRL/CMD + M
