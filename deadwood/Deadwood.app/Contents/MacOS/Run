@@ -1,5 +1,6 @@
 #!/bin/bash
 jarPath=$(dirname "$0")
+cd "$jarPath"
 java \
     --enable-preview \
     -Dprism.verbose=true \
